@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./tools/PrivateRoute.js";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
@@ -8,10 +9,12 @@ function App() {
     <div className="App">
       {/*routing start*/}
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<PrivateRoute Component={Home} />} exact />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
       {/*routing end*/}
     </div>
