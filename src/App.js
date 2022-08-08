@@ -3,6 +3,7 @@ import PrivateRoute from "./tools/PrivateRoute.js";
 import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound.js";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>} />
             <Route path="/login" element={<Login />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
