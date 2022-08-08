@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 function SideBar() {
     return (
@@ -13,9 +14,9 @@ function SideBar() {
             <hr className="sidebar-divider my-0" />
             {/* Nav Item - Dashboard */}
             <li className="nav-item active">
-                <a className="nav-link" href="index.html">
+                <Link className="nav-link" to="/">
                     <i className="fas fa-fw fa-tachometer-alt" />
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span></Link>
             </li>
             {/* Divider */}
             <hr className="sidebar-divider" />
@@ -47,7 +48,7 @@ function SideBar() {
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Gestion des Station meteo:</h6>
                         <a className="collapse-item" href="buttons.html">ajouter  des Station</a>
-                        <a className="collapse-item" href="buttons.html">list  des Station</a>
+                        <Link className="collapse-item" to="/stations">list  des Station</Link>
                     </div>
                 </div>
             </li>
@@ -62,7 +63,7 @@ function SideBar() {
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Gestion des Region meteo:</h6>
                         <a className="collapse-item" href="buttons.html">ajouter  des Region</a>
-                        <a className="collapse-item" href="buttons.html">list  des Region</a>
+                        <Link className="collapse-item" to="/regions">list  des Region</Link>
                     </div>
                 </div>
             </li>
@@ -97,8 +98,8 @@ function SideBar() {
                 <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Profile:</h6>
-                        <a className="collapse-item" href="login.html">espace utilisateur</a>
-                        <a className="collapse-item" href="404.html">xxxxxxxxxxxxxxxx</a>
+                        <Link className="collapse-item" to="/users">espace utilisateur</Link>
+                        <Link className="collapse-item" to="/users">list des utilisateur</Link>
                         <a className="collapse-item" href="404.html">xxxxxxxxxxxxxxxx</a>
                        
                         <div className="collapse-divider" />

@@ -44,7 +44,6 @@ function Login() {
     } 
 
     }catch(err){
-      console.log(err)
       setErrorMsg(err.response.data.detail)
     }
     

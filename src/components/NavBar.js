@@ -1,15 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { useEffect, useState } from "react";
 
 function NavBar() {
   const navigate = useNavigate();
   const { setToken, user, setUser } = useAuth();
-  //   let {user, logoutUser} = useContext(AuthContext)
-
-  useEffect(() => {
-    console.log('frm nav',user);
-  }, []);
 
   const logoutUser = () => {
     setUser(null);
