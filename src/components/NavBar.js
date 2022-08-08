@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function NavBar() {
   const navigate = useNavigate();
-  const { user, setUser } = useAuth();
+  const { setToken, user, setUser } = useAuth();
   //   let {user, logoutUser} = useContext(AuthContext)
 
   useEffect(() => {
@@ -13,7 +13,9 @@ function NavBar() {
 
   const logoutUser = () => {
     setUser(null);
+    setToken(null)
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     navigate("/", { replace: true });
   };
 
@@ -256,11 +258,11 @@ function NavBar() {
             aria-expanded="false"
           >
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              {user.email}
+              {user.username}
             </span>
             <img
               className="img-profile rounded-circle"
-              src="img/undraw_profile.svg"
+              src="assets/img/undraw_profile.svg"
               alt="..."
             />
           </a>

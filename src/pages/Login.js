@@ -1,36 +1,53 @@
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 function Login() {
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setToken, setUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const userRef = useRef();
-  const errorMsgRef = useRef();
 
   useEffect(() => {
     userRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    setErrorMsg("");
-  }, [email, password]);
+ useEffect(() => {
+   setErrorMsg("");
+ }, [email, password]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const authInput = {
-      "email": email,
-      "password" : password
-    }
-    setUser(authInput);
-    localStorage.setItem("user", JSON.stringify(authInput));
+    try {
+    const submittedData = {
+      email: email,
+      password: password,
+    };
+    const response = await axios.post(
+      "http://127.0.0.1:8000/api/v1/token/",
+      submittedData
+    );
+    if (response.status === 200) {
+      setToken(response.access);
+      setUser(jwtDecode(response.data.access));
+      localStorage.setItem("token", JSON.stringify(response.data.access));
+      localStorage.setItem(
+        "user",
+        JSON.stringify(jwtDecode(response.data.access))
+      );
+      navigate("/", { replace: true });
+    } 
 
-    console.log("user: ", email, " ", password);
-    navigate("/", { replace: true });
+    }catch(err){
+      console.log(err)
+      setErrorMsg(err.response.data.detail)
+    }
+    
   };
 
   return (
@@ -42,12 +59,19 @@ function Login() {
             <div className="card-body p-0">
               {/* Nested Row within Card Body */}
               <div className="row">
-                <div className="col-lg-6 d-none d-lg-block bg-login-imag" />
+                <div className="col-lg-6 d-none d-lg-block bg-login-image" />
                 <div className="col-lg-6">
                   <div className="p-5">
-                    <div className="text-center">
-                      <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                    </div>
+                    {errorMsg ? (
+                      <div className="alert alert-danger" role="alert">
+                        {errorMsg}
+                      </div>
+                    ) : (
+                      <div className="text-center">
+                        <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                      </div>
+                    )}
+
                     <form className="user" onSubmit={handleSubmit}>
                       <div className="form-group">
                         <input
