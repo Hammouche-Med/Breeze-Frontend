@@ -5,20 +5,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound.js";
 import Users from "./pages/users/Users.js";
+import AddUser from "./pages/users/AddUser.js";
 import Regions from "./pages/regions/Regions.js";
 import Stations from "./pages/stations/Stations.js";
-import { useEffect } from "react";
 
 function App() {
-    useEffect(() => {
-      const script = document.createElement('script');
-      script.src = "assets/js/sb-admin-2.js";
-      script.async = true;
-      document.body.appendChild(script);
-      return () => {
-        document.body.removeChild(script);  
-      }
-    }, []);
   return ( 
     <div className="App">
       {/*routing start*/}
@@ -28,6 +19,7 @@ function App() {
             <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>} />
 
             <Route path="/users" element={<PrivateRoute> <Users/> </PrivateRoute>} />
+            <Route path="/users/create" element={<PrivateRoute> <AddUser/> </PrivateRoute>} />
 
             <Route path="/regions" element={<PrivateRoute> <Regions/> </PrivateRoute>} />
 
