@@ -62,7 +62,7 @@ function SideBar() {
                 <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Gestion des Region meteo:</h6>
-                        <a className="collapse-item" href="buttons.html">ajouter  des Region</a>
+                        <Link className="collapse-item" to="/regions/create">ajouter  des Region</Link>
                         <Link className="collapse-item" to="/regions">list  des Region</Link>
                     </div>
                 </div>

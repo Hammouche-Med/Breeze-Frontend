@@ -172,8 +172,8 @@ function Users() {
                 </div>
               </div>
             </div>
-          </div>
-          {userDetails && <UserInfo {...userDetails} />}
+            </div>
+            {userDetails && <UserInfo {...userDetails} />}
           {/* end content */}
         </div>
         <Footer />
