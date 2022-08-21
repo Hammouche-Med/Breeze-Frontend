@@ -126,6 +126,18 @@ function Stations() {
                                     to="/stations/edit"
                                     data-toggle="tooltip"
                                     data-placement="top"
+                                    state={{
+                                      id:stat.id,
+                                      name:stat.name, 
+                                      oaci:stat.OACI, 
+                                      omm:stat.OMM, 
+                                      category:stat.category, 
+                                      longitude:stat.longitude, 
+                                      altitude:stat.altitude, 
+                                      latitude:stat.latitude, 
+                                      region:stat.region,
+                                      region_name:stat.region_name
+                                    }}
                                   >
                                     {" "}
                                     <i className="fas fa-exclamation-triangle"></i>
@@ -137,7 +149,6 @@ function Stations() {
                                     data-toggle="tooltip"
                                     data-placement="top"
                                     title="Delete"
-
                                     onClick={() => handeDelete(stat.id)}
                                   >
                                     {" "}

@@ -31,7 +31,6 @@ function AddStation() {
     });
     if (res.status === 200) {
       setAllRegions(() => res.data);
-      console.log("-----", allRegions);
     }
   };
   useEffect(() => {
