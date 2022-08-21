@@ -10860,6 +10860,11 @@ a:focus {
   }
 }
 
+.leaflet-container {
+  width: 100%;
+  height: 85vh;
+}
+
 .bg-login-image {
   background: url("../img/breeze.jpg");
   background-position: center;

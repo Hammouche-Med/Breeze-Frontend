@@ -47,7 +47,7 @@ function SideBar() {
                 <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Gestion des Station meteo:</h6>
-                        <a className="collapse-item" href="buttons.html">ajouter  des Station</a>
+                        <Link className="collapse-item" to="/stations-map">Map  des Station</Link>
                         <Link className="collapse-item" to="/stations">list  des Station</Link>
                     </div>
                 </div>
@@ -62,7 +62,6 @@ function SideBar() {
                 <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Gestion des Region meteo:</h6>
-                        <Link className="collapse-item" to="/regions/create">ajouter  des Region</Link>
                         <Link className="collapse-item" to="/regions">list  des Region</Link>
                     </div>
                 </div>
@@ -78,7 +77,6 @@ function SideBar() {
                 <div id="collapseFour" className="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Gestion des NOTMET:</h6>
-                        <a className="collapse-item" href="buttons.html">ajouter  des NOTMET</a>
                         <a className="collapse-item" href="buttons.html">list  des NOTMET</a>
                     </div>
                 </div>

@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+
+
 
 function NotFound() {
+  const navigate = useNavigate();
   return (
     <div className="container-fluid">
       <div className="text-center">
@@ -12,7 +16,7 @@ function NotFound() {
         <p className="text-gray-500 mb-0">
           It looks like you found a glitch in the matrix...
         </p>
-        <link to="/" />← Back to Dashboard
+        <a href="#" onClick={() => navigate(-1)}>← Go Back</a>
       </div>
     </div>
   );

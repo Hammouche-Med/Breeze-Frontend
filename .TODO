@@ -1,0 +1,20 @@
+- FIX user pic on nav in forms
+- Change icons on sidebar
+- FIX broken links hrefs 
+- Align region action td to the left
+- Add user Profile page
+- Fix toggle sidebar button
+- Fix cascade one delete option
+- Ask what to do with nav options (icons, search, ...)
+- Translate to frenche
+
+- add Phone feild to user
+- change edit icon in all tables
+
+- add pagination
+- add cancel button in forms
+
+- add create station form
+- add edit station form
+- add delete station
+- add station profile view

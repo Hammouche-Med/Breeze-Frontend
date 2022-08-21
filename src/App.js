@@ -13,6 +13,8 @@ import AddRegion from "./pages/regions/AddRegion.js";
 import EditRegion from "./pages/regions/EditRegion.js";
 
 import Stations from "./pages/stations/Stations.js";
+import StationsMap from "./pages/stations/StationsMap.js";
+
 
 function App() {
   return ( 
@@ -31,6 +33,7 @@ function App() {
             <Route path="/regions/edit" element={<PrivateRoute> <EditRegion/> </PrivateRoute>} />
 
             <Route path="/stations" element={<PrivateRoute> <Stations/> </PrivateRoute>} />
+            <Route path="/stations-map" element={<PrivateRoute> <StationsMap/> </PrivateRoute>} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<NotFound />} />
