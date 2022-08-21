@@ -256,7 +256,7 @@ function NavBar() {
             </span>
             <img
               className="img-profile rounded-circle"
-              src="assets/img/undraw_profile.svg"
+              src="/assets/img/undraw_profile.svg"
               alt="..."
             />
           </a>

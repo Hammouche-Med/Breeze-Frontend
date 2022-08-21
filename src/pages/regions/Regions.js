@@ -91,7 +91,7 @@ function Regions() {
                           <th>ID</th>
                           <th>Name</th>
                           <th>Code</th>
-                          <th>Action</th>
+                          <th className="px-2" style= {{ textAlign: "right" }}>Action</th>
                         </tr>
                       </thead>{" "}
                       {regions.length > 0 ? (
@@ -102,7 +102,7 @@ function Regions() {
                                 <td>{reg.id}</td>
                                 <td>{reg.name}</td>
                                 <td>{reg.code}</td>
-                                <td >
+                                <td style= {{ textAlign: "right"}}>
                                   <a
                                     className="btn btn-info btn-circle"
                                     href="#"
@@ -124,7 +124,7 @@ function Regions() {
                                     state={{ id: reg.id,  name: reg.name, code: reg.code}}
                                   >
                                     {" "}
-                                    <i className="fas fa-exclamation-triangle"></i>
+                                    <i className="fas fa-edit"></i>
                                   </Link>
                                   &nbsp;&nbsp;
                                   <a

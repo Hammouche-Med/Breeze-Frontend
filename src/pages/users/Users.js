@@ -136,7 +136,7 @@ function Users() {
                                     title="Edit"
                                   >
                                     {" "}
-                                    <i className="fas fa-exclamation-triangle"></i>
+                                    <i className="fas fa-edit"></i>
                                   </Link>
                                   &nbsp;&nbsp;
                                   <a
