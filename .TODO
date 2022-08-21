@@ -9,12 +9,16 @@
 - Translate to frenche
 
 - add Phone feild to user
+- fix update feild to user
 - change edit icon in all tables
+
 
 - add pagination
 - add cancel button in forms
+- fix error messages 
 
-- add create station form
+- add create station form................................................//DONE
 - add edit station form
-- add delete station
+- add delete station.....................................................//DONE
 - add station profile view
+- add apexchart to station single view 

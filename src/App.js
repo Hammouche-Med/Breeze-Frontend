@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./tools/PrivateRoute.js";
 import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./tools/PrivateRoute.js";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound.js";
@@ -14,6 +15,8 @@ import EditRegion from "./pages/regions/EditRegion.js";
 
 import Stations from "./pages/stations/Stations.js";
 import StationsMap from "./pages/stations/StationsMap.js";
+import AddStation from "./pages/stations/AddStation.js";
+import EditStation from "./pages/stations/EditStation.js";
 
 
 function App() {
@@ -34,6 +37,8 @@ function App() {
 
             <Route path="/stations" element={<PrivateRoute> <Stations/> </PrivateRoute>} />
             <Route path="/stations-map" element={<PrivateRoute> <StationsMap/> </PrivateRoute>} />
+            <Route path="/stations/create" element={<PrivateRoute> <AddStation/> </PrivateRoute>} />
+            <Route path="/stations/edit" element={<PrivateRoute> <EditStation/> </PrivateRoute>} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<NotFound />} />

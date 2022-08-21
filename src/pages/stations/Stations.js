@@ -69,7 +69,7 @@ function Stations() {
                 <div className="card">
                   <div className="card-header">
                     <Link
-                      to="/regions/create"
+                      to="/stations/create"
                       className="btn btn-primary btn-circle btn-lg float-right"
                       data-toggle="tooltip"
                       data-placement="top"

@@ -53,7 +53,7 @@ function StationsMap() {
                 />
                 {stations.map((stat) => {
                   return (
-                    <Marker position={[stat.latitude,stat.longitude ]}>
+                    <Marker key={stat.id} position={[stat.latitude,stat.longitude ]}>
                       <Popup>
                         {stat.name} <br/>
                         {stat.category}
