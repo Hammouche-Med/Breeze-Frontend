@@ -135,14 +135,14 @@ function Users() {
                                     data-toggle="tooltip"
                                     data-placement="top"
                                     title="Edit"
-                                    state={{ 
+                                    state={{
                                       id: user.id,
                                       first_name: user.first_name,
                                       last_name: user.last_name,
                                       username: user.username,
                                       email: user.email,
                                       phone: user.phone,
-                                      is_superuser: user.is_superuser
+                                      is_superuser: user.is_superuser,
                                     }}
                                   >
                                     {" "}
@@ -151,10 +151,13 @@ function Users() {
                                   &nbsp;&nbsp;
                                   <Link
                                     className="btn btn-success btn-circle"
-                                    to="users/reset-password"
+                                    to="/users/reset-password"
                                     data-toggle="tooltip"
                                     data-placement="top"
                                     title="Reset Password"
+                                    state={{
+                                      id: user.id,
+                                    }}
                                   >
                                     {" "}
                                     <i className="fas fa-lock"></i>
@@ -193,8 +196,8 @@ function Users() {
                 </div>
               </div>
             </div>
-            </div>
-            {userDetails && <UserInfo {...userDetails} />}
+          </div>
+          {userDetails && <UserInfo {...userDetails} />}
           {/* end content */}
         </div>
         <Footer />

@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound.js";
 import Users from "./pages/users/Users.js";
 import AddUser from "./pages/users/AddUser.js";
 import EditUser from "./pages/users/EditUser";
+import ResetPassword from "./pages/users/ResetPassword";
 
 import Regions from "./pages/regions/Regions.js";
 import AddRegion from "./pages/regions/AddRegion.js";
@@ -32,6 +33,7 @@ function App() {
             <Route path="/users" element={<PrivateRoute> <Users/> </PrivateRoute>} />
             <Route path="/users/create" element={<PrivateRoute> <AddUser/> </PrivateRoute>} />
             <Route path="/users/edit" element={<PrivateRoute> <EditUser/> </PrivateRoute>} />
+            <Route path="/users/reset-password" element={<PrivateRoute> <ResetPassword/> </PrivateRoute>} />
 
             <Route path="/regions" element={<PrivateRoute> <Regions/> </PrivateRoute>} />
             <Route path="/regions/create" element={<PrivateRoute> <AddRegion/> </PrivateRoute>} />
