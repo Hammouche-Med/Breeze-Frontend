@@ -96,7 +96,7 @@ function SideBar() {
                 <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Profile:</h6>
-                        <Link className="collapse-item" to="/users"> <i className="fas fa-fw fa-user" /> {" "}espace utilisateur</Link>
+                        <Link className="collapse-item" to="/users/profile"> <i className="fas fa-fw fa-user" /> {" "}espace utilisateur</Link>
                         <Link className="collapse-item" to="/users"><i className="fas fa-fw fa-users" /> {"  "}list des utilisateur</Link>
                         <a className="collapse-item" href="#">xxxxxxxxxxxxxxxx</a>
                        

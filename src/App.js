@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound.js";
 
 import Users from "./pages/users/Users.js";
+import UserProfile from "./pages/users/UserProfile";
 import AddUser from "./pages/users/AddUser.js";
 import EditUser from "./pages/users/EditUser";
 import ResetPassword from "./pages/users/ResetPassword";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>} />
 
             <Route path="/users" element={<PrivateRoute> <Users/> </PrivateRoute>} />
+            <Route path="/users/profile" element={<PrivateRoute> <UserProfile/> </PrivateRoute>} />
             <Route path="/users/create" element={<PrivateRoute> <AddUser/> </PrivateRoute>} />
             <Route path="/users/edit" element={<PrivateRoute> <EditUser/> </PrivateRoute>} />
             <Route path="/users/reset-password" element={<PrivateRoute> <ResetPassword/> </PrivateRoute>} />
