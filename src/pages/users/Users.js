@@ -14,7 +14,6 @@ function Users() {
 
   useEffect(() => {
     getUsers();
-    console.log("i run once");
   }, []);
 
   const getUsers = async () => {
@@ -26,9 +25,7 @@ function Users() {
       },
     });
     if (res.status === 200) {
-      console.log("reazzzz", res.data);
       setUsersList(() => res.data);
-      console.log("uzerzzzz", usersList);
       setIsLoading(false);
     }
   };
@@ -96,7 +93,9 @@ function Users() {
                           <th>ID</th>
                           <th>First Name</th>
                           <th>Last Name</th>
+                          <th>User Name</th>
                           <th>Email</th>
+                          <th>Phone</th>
                           <th>User Type</th>
                           <th>Action</th>
                         </tr>
@@ -109,7 +108,9 @@ function Users() {
                                 <td>{user.id}</td>
                                 <td>{user.first_name}</td>
                                 <td>{user.last_name}</td>
+                                <td>{user.username}</td>
                                 <td>{user.email}</td>
+                                <td>{user.phone}</td>
                                 {user.is_superuser ? (
                                   <td>Admin</td>
                                 ) : (
@@ -130,13 +131,33 @@ function Users() {
                                   &nbsp;&nbsp;
                                   <Link
                                     className="btn btn-warning btn-circle"
-                                    to="users/edit/:id"
+                                    to="/users/edit"
                                     data-toggle="tooltip"
                                     data-placement="top"
                                     title="Edit"
+                                    state={{ 
+                                      id: user.id,
+                                      first_name: user.first_name,
+                                      last_name: user.last_name,
+                                      username: user.username,
+                                      email: user.email,
+                                      phone: user.phone,
+                                      is_superuser: user.is_superuser
+                                    }}
                                   >
                                     {" "}
                                     <i className="fas fa-edit"></i>
+                                  </Link>
+                                  &nbsp;&nbsp;
+                                  <Link
+                                    className="btn btn-success btn-circle"
+                                    to="users/reset-password"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Reset Password"
+                                  >
+                                    {" "}
+                                    <i className="fas fa-lock"></i>
                                   </Link>
                                   &nbsp;&nbsp;
                                   <a

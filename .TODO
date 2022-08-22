@@ -3,22 +3,28 @@
 - FIX broken links hrefs.................................................//DONE
 - Align region action td to the left.....................................//DONE
 - Fix toggle sidebar button
-- Fix cascade one delete option
-- Ask what to do with nav options (icons, search, ...)
-- Translate to frenche
+- Fix cascade one delete option..........................................//????
+- Ask what to do with nav options (icons, search, ...)...................//????
+- Translate to frenche...................................................//????
 
-- add Phone feild to user
+- add Phone feild to user................................................//DONE
 - Add user Profile page
-- fix update feild to user
+- fix update feild to user...............................................//DONE
 - change edit icon in all tables.........................................//DONE
+- add update user page...................................................//DONE
+- add reset user password page
+- fix duplicate email and user name in user profile
+- fix 0 NOT SHOWING ON PHONE NUMBER START
 
 
 - add pagination
 - add cancel button in forms
-- fix error messages 
+- fix error messages
 
 - add create station form................................................//DONE
 - add edit station form..................................................//DONE
 - add delete station.....................................................//DONE
+
+
 - add station profile view
 - add apexchart to station single view 

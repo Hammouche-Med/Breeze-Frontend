@@ -41,20 +41,6 @@ function EditStation() {
     getRegions();
   }, []);
 
-  const updateStatiocn = async (e) => {
-    e.preventDefault()
-    const submittedData = {
-      name: newName,
-      OACI: newOaci,
-      OMM: newOmm,
-      category: newCategory,
-      longitude: newLongitude,
-      altitude: newAltitude,
-      latitude: newLatitude,
-      region: newRegion,
-    };
-    console.log(submittedData)
-  }
   const updateStation = async (e) => {
     try {
       e.preventDefault();

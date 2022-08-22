@@ -1,7 +1,8 @@
 import React from "react";
 
 function UserInfo(props) {
-  const { email, first_name, last_name, is_superuser } = props;
+  const { email, first_name, last_name,username, is_superuser, phone } = props;
+
   return (
     <div>
       <div
@@ -31,7 +32,7 @@ function UserInfo(props) {
                     <b>Email</b> <a className="float-right">{email}</a>
                   </li>
                   <li className="list-group-item">
-                    <b>Phone</b> <a className="float-right">wwwwwwwwwwwwww</a>
+                    <b>Phone</b> <a className="float-right">{phone}</a>
                   </li>
                 </ul>
               </div>
