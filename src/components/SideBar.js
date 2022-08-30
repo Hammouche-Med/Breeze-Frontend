@@ -72,12 +72,12 @@ function SideBar() {
             <li className="nav-item">
                 <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
                     <i className="fas fa-fw fa-clock" />
-                    <span>NOTMET </span>
+                    <span>Taux de Production </span>
                 </a>
                 <div id="collapseFour" className="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Gestion des NOTMET:</h6>
-                        <a className="collapse-item" href="#"> <i className="fas fa-fw fa-list" /> {" "}list  des NOTMET</a>
+                        <h6 className="collapse-header">Gestion Taux-Production:</h6>
+                        <Link to="/production" className="collapse-item" href="#"> <i className="fas fa-fw fa-list" /> {" "}list des Taux-Production</Link>
                     </div>
                 </div>
             </li>
