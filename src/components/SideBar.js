@@ -33,7 +33,7 @@ function SideBar() {
                 <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Consiltation des emmision:</h6>
-                        <a className="collapse-item" href="#"><i className="fas fa-fw fa-list" /> {" "}list  des emmision</a>
+                        <Link to="/observation" className="collapse-item"><i className="fas fa-fw fa-list" /> {" "}list  des emmision</Link>
                     </div>
                 </div>
             </li>

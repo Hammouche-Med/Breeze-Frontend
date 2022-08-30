@@ -25,6 +25,10 @@ import Production from "./pages/production/Production";
 import AddProduction from "./pages/production/AddProduction";
 import EditProduction from "./pages/production/EditProduction";
 
+import Observation from "./pages/observation/Observation";
+
+
+
 
 function App() {
   return ( 
@@ -53,6 +57,8 @@ function App() {
             <Route path="/production" element={<PrivateRoute> <Production/> </PrivateRoute>} />
             <Route path="/production/create" element={<PrivateRoute> <AddProduction/> </PrivateRoute>} />
             <Route path="/production/edit" element={<PrivateRoute> <EditProduction/> </PrivateRoute>} />
+
+            <Route path="/observation" element={<PrivateRoute> <Observation/> </PrivateRoute>} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<NotFound />} />
