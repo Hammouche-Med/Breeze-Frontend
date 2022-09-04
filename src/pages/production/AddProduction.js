@@ -8,51 +8,31 @@ import SideBar from "../../components/SideBar";
 
 function AddProduction() {
   const [name, setName] = useState("");
-  const [time_meter, setTime_meter] = useState("");
-  const [schedule, setSchedule] = useState("");
-  const [type_obs, setType_Obs] = useState("");
-  const [expected_d, setExpected_d] = useState(0);
-  const [expected_m, setExpected_m] = useState(0);
-  const [expected_s, setExpected_s] = useState(0);
-  const [expected_y, setExpected_y] = useState(0);
+  const [start_t, setStart_t] = useState("");
+  const [end_t, setEnd_t] = useState("");
+  const [type_obs, setType_Obs] = useState("METAR");
+  const [rate, setRate] = useState("1800");
   const [delay_1t, setDelay_1t] = useState(0);
   const [delay_2t, setDelay_2t] = useState(0);
-  const [delay_3t, setDelay_3t] = useState(0);
   const [errorMsg, setErrorMsg] = useState(0);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setErrorMsg("");
-  }, [
-    name,
-    time_meter,
-    schedule,
-    type_obs,
-    expected_d,
-    expected_m,
-    expected_s,
-    expected_y,
-    delay_1t,
-    delay_2t,
-    delay_3t,
-  ]);
+  }, [name, end_t, rate, type_obs, start_t, delay_1t, delay_2t]);
 
   const createTaux_Prod = async (e) => {
     e.preventDefault();
     try {
       const submittedData = {
         name: name,
-        time_meter: time_meter,
-        schedule: schedule,
+        start_t: start_t,
+        end_t: end_t,
+        rate: rate,
         type_obs: type_obs,
-        expected_d: expected_d,
-        expected_m: expected_m,
-        expected_s: expected_s,
-        expected_y: expected_y,
         delay_1t: delay_1t,
         delay_2t: delay_2t,
-        delay_3t: delay_3t,
       };
       const url = "http://127.0.0.1:8000/api/v1/production/create";
       const token = localStorage.getItem("token");
@@ -76,10 +56,10 @@ function AddProduction() {
         });
     } catch (error) {
       setErrorMsg("error ocurred");
+      console.log(error)
     }
   };
-  return  (
-
+  return (
     <div id="wrapper">
       <SideBar />
       <div id="content-wrapper" className="d-flex flex-column">
@@ -98,7 +78,7 @@ function AddProduction() {
               )}
               {/* /.card-header */}
               {/* form start */}
-              <form  onSubmit={createTaux_Prod}>
+              <form onSubmit={createTaux_Prod}>
                 <div className="card-body">
                   <div className="form-group">
                     <label htmlFor="exampleInputText1">Name</label>
@@ -112,74 +92,47 @@ function AddProduction() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputTeggxt2">Time meter</label>
+                    <label htmlFor="exampleInputTeggxt2">Début du travail</label>
                     <input
-                      type="text"
+                      type="time"
                       className="form-control"
-                      value={time_meter}
-                      onChange={(e) => setTime_meter(e.target.value)}
+                      value={start_t}
+                      onChange={(e) => setStart_t(e.target.value)}
                       required
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputTxt2">Schedule</label>
+                    <label htmlFor="exampleInputTeggxt2">Fin du travail</label>
                     <input
-                      type="text"
+                      type="time"
                       className="form-control"
-                      value={schedule}
-                      onChange={(e) => setSchedule(e.target.value)}
+                      value={end_t}
+                      onChange={(e) => setEnd_t(e.target.value)}
                       required
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputggText2">Type Observation</label>
-                    <input
-                      type="text"
-                      className="form-control"
+                    <label>Type Observation</label>
+                    <select
                       value={type_obs}
                       onChange={(e) => setType_Obs(e.target.value)}
-                      required
-                    />
+                      className="form-control"
+                    >
+                      <option value="METAR">METAR</option>
+                      <option value="SYNOP">SYNOP</option>
+                    </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleffInputText2">Prévue /J</label>
-                    <input
-                      type="number"
+                    <label>Taux</label>
+                    <select
+                      value={rate}
+                      onChange={(e) => setRate(e.target.value)}
                       className="form-control"
-                      value={expected_d}
-                      onChange={(e) => setExpected_d(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="exampleInfputfText2">Prévue /M</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={expected_m}
-                      onChange={(e) => setExpected_m(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="exampleInputTefxt2">Prévue /S</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={expected_s}
-                      onChange={(e) => setExpected_s(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="exampleInpuftText2">Prévue /Y</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={expected_y}
-                      onChange={(e) => setExpected_y(e.target.value)}
-                      required
-                    />
+                    >
+                      <option value="1800">30min</option>
+                      <option value="3600">1h</option>
+                      <option value="10800">3h</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputTexft2">Rtd /1T</label>
@@ -198,16 +151,6 @@ function AddProduction() {
                       className="form-control"
                       value={delay_2t}
                       onChange={(e) => setDelay_2t(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="exampleInputText52">Rtd /3T</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      value={delay_3t}
-                      onChange={(e) => setDelay_3t(e.target.value)}
                       required
                     />
                   </div>

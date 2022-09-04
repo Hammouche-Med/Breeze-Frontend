@@ -63,7 +63,7 @@ function AddStation() {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Region Created Successfully",
+              title: "Station Created Successfully",
               showConfirmButton: false,
               timer: 1500,
             });

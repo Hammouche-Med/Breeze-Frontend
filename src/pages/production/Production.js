@@ -1,19 +1,18 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import Footer from '../../components/Footer';
-import NavBar from '../../components/NavBar';
-import SideBar from '../../components/SideBar';
-import InfoProduction from './InfoProduction';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
+import SideBar from "../../components/SideBar";
+import InfoProduction from "./InfoProduction";
 
 function Production() {
+  const [taux_prod, setTaux_prod] = useState([]);
 
-const [taux_prod, setTaux_prod] = useState([])
+  const [tauxDetails, setTauxDetails] = useState(null);
 
-const [tauxDetails, setTauxDetails] = useState(null)
-
-useEffect(() => {
+  useEffect(() => {
     getTaux_prod();
   }, []);
 
@@ -26,7 +25,7 @@ useEffect(() => {
       },
     });
     if (res.status === 200) {
-        setTaux_prod(() => res.data);
+      setTaux_prod(() => res.data);
     }
   };
 
@@ -51,7 +50,7 @@ useEffect(() => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-            deleteTaux_prod(id);
+          deleteTaux_prod(id);
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       })
@@ -67,7 +66,7 @@ useEffect(() => {
           <NavBar />
           {/* start content */}
           <div className="container-fluid">
-          <div className="row">
+            <div className="row">
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
@@ -90,16 +89,14 @@ useEffect(() => {
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
-                          <th>Type d'travail</th>
-                          <th>Horaire</th>
                           <th>Type d'Observation</th>
+                          <th>Début du travail</th>
+                          <th>Fin du travail</th>
+                          <th>Taux</th>
                           <th>Prévue /J</th>
-                          <th>Prévue /M</th>
-                          <th>Prévue /S</th>
-                          <th>Prévue /A</th>
+                          <th>Prévue ce /M</th>
                           <th>Rtd /1T</th>
                           <th>Rtd /2T</th>
-                          <th>Rtd /3T</th>
                           <th>Action</th>
                         </tr>
                       </thead>{" "}
@@ -110,17 +107,22 @@ useEffect(() => {
                               <tr key={taux.id}>
                                 <td>{taux.id}</td>
                                 <td>{taux.name}</td>
-                                <td>{taux.time_meter}</td>
-                                <td>{taux.schedule}</td>
                                 <td>{taux.type_obs}</td>
+                                <td>{taux.start_t}</td>
+                                <td>{taux.end_t}</td>
+                                <td>
+                                  {taux.rate === 1800
+                                    ? "30min"
+                                    : taux.rate === 3600
+                                    ? "1h"
+                                    : "3h"}
+                                </td>
+
                                 <td>{taux.expected_d}</td>
                                 <td>{taux.expected_m}</td>
-                                <td>{taux.expected_s}</td>
-                                <td>{taux.expected_y}</td>
                                 <td>{taux.delay_1t}</td>
                                 <td>{taux.delay_2t}</td>
-                                <td>{taux.delay_3t}</td>
-                                <td style= {{ textAlign: "right"}}>
+                                <td style={{ textAlign: "right" }}>
                                   <a
                                     className="btn btn-info btn-circle"
                                     href="#"
@@ -139,19 +141,15 @@ useEffect(() => {
                                     data-placement="top"
                                     title="Edit"
                                     to="/production/edit"
-                                    state={{ 
-                                        id: taux.id,
-                                        name: taux.name,
-                                        time_meter: taux.time_meter,
-                                        schedule: taux.schedule,
-                                        type_obs: taux.type_obs,
-                                        expected_d: taux.expected_d,
-                                        expected_m: taux.expected_m,
-                                        expected_s: taux.expected_s,
-                                        expected_y: taux.expected_y,
-                                        delay_1t: taux.delay_1t,
-                                        delay_2t: taux.delay_2t,
-                                        delay_3t: taux.delay_3t,
+                                    state={{
+                                      id: taux.id,
+                                      name: taux.name,
+                                      start_t: taux.start_t,
+                                      end_t: taux.end_t,
+                                      rate: taux.rate,
+                                      type_obs: taux.type_obs,
+                                      delay_1t: taux.delay_1t,
+                                      delay_2t: taux.delay_2t,
                                     }}
                                   >
                                     {" "}
@@ -200,4 +198,4 @@ useEffect(() => {
   );
 }
 
-export default Production
+export default Production;

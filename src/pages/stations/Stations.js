@@ -105,7 +105,7 @@ function Stations() {
                                 <td>{stat.id}</td>
                                 <td>{stat.OACI}</td>
                                 <td>{stat.OMM}</td>
-                                <td>{stat.region_name}</td>
+                                <td>{stat.reg.name}</td>
                                 <td>{stat.name}</td>
                                 <td>{stat.category}</td>
                                 <td>{stat.longitude}</td>
