@@ -36,42 +36,55 @@ function AddStation() {
   useEffect(() => {
     setErrorMsg("");
     getRegions();
-  }, []);
+  }, [
+    name,
+    oaci,
+    omm,
+    category,
+    longitude,
+    altitude,
+    latitude,
+    region,
+  ]);
   const createStation = async (e) => {
     e.preventDefault();
-    try {
-      const submittedData = {
-        name: name,
-        OACI: oaci,
-        OMM: omm,
-        category: category,
-        longitude: longitude,
-        altitude: altitude,
-        latitude: latitude,
-        region: region,
-      };
-      const url = "http://127.0.0.1:8000/api/v1/station/create";
-      const token = localStorage.getItem("token");
-      const res = await axios
-        .post(url, submittedData, {
-          headers: {
-            Authorization: "Bearer " + JSON.parse(token),
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Station Created Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/stations", { replace: true });
-          }
-        });
-    } catch (error) {
-      setErrorMsg("error ocurred");
+    if (!region) {
+      setErrorMsg("choisie un region");
+    } else {
+      try {
+        const submittedData = {
+          name: name,
+          OACI: oaci,
+          OMM: omm,
+          category: category,
+          longitude: longitude,
+          altitude: altitude,
+          latitude: latitude,
+          region: region,
+        };
+        const url = "http://127.0.0.1:8000/api/v1/station/create";
+        const token = localStorage.getItem("token");
+        const res = await axios
+          .post(url, submittedData, {
+            headers: {
+              Authorization: "Bearer " + JSON.parse(token),
+            },
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Station Created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/stations", { replace: true });
+            }
+          });
+      } catch (error) {
+        setErrorMsg("error ocurred");
+      }
     }
   };
   return (
@@ -138,6 +151,7 @@ function AddStation() {
                       onChange={(e) => setRegion(e.target.value)}
                       className="form-control"
                     >
+                      <option selected>Choisir un Region</option>
                       {allRegions.length > 0 ? (
                         allRegions.map((reg) => {
                           return (

@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -71,8 +72,8 @@ function Observation() {
                                 <td>{obs.station_name}</td>
                                 <td>{obs.station_oaci}</td>
                                 <td>{obs.station_omm}</td>
-                                <td>{formatDate(obs.obs_date)}</td>
-                                <td>{formatDate(obs.rec_date)}</td>
+                                <td>{obs.obs_date} { moment(obs.obs_time, "HH:mm:ss").format('HH:mm A') }</td>
+                                <td>{obs.rec_date} {moment(obs.rec_time, "HH:mm:ss").format('HH:mm A') }</td>
                                 <td>{obs.type}</td>
                                 <td>{obs.content}</td>
                                 <td style= {{ textAlign: "right"}}>
