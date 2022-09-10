@@ -22,18 +22,36 @@ function SideBar() {
             <hr className="sidebar-divider" />
             {/* Heading */}
             <div className="sidebar-heading">
+                Rapports
+            </div>
+            <li className="nav-item">
+                <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne-1" aria-expanded="true" aria-controls="collapseOne">
+                    <i className="fas fa-fw fa-clipboard" />
+                    <span>Rapports d'Observation</span>
+                </a>
+                <div id="collapseOne-1" className="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div className="bg-white py-2 collapse-inner rounded">
+                        <h6 className="collapse-header">SYNOP et METAR:</h6>
+                        <Link to="/reports-day" className="collapse-item"><i className="fas fa-fw fa-file" /> {" "} Journalier</Link>
+                        <Link to="/reports-month" className="collapse-item"><i className="fas fa-fw fa-file" /> {" "} Mensuel</Link>
+                        <Link to="/reports-year" className="collapse-item"><i className="fas fa-fw fa-file" /> {" "} Annuel</Link>
+                        <Link to="/reports-period" className="collapse-item"><i className="fas fa-fw fa-file" /> {" "} Periode de Temps</Link>
+                    </div>
+                </div>
+            </li>
+            <div className="sidebar-heading">
                 Gestion
             </div>
             {/* Nav Item - Pages Collapse Menu */}
             <li className="nav-item">
                 <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <i className="fas fa-fw fa-sun" />
-                    <span>Emission Meteo</span>
+                    <span>Observation Meteo</span>
                 </a>
                 <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Consiltation des emmision:</h6>
-                        <Link to="/observation" className="collapse-item"><i className="fas fa-fw fa-list" /> {" "}list  des emmision</Link>
+                        <h6 className="collapse-header">Consiltation des Obs:</h6>
+                        <Link to="/observation" className="collapse-item"><i className="fas fa-fw fa-list" /> {" "}list des Observation</Link>
                     </div>
                 </div>
             </li>

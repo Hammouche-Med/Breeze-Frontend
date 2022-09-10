@@ -27,6 +27,12 @@ import EditProduction from "./pages/production/EditProduction";
 
 import Observation from "./pages/observation/Observation";
 
+import Reports from "./pages/reports/Reports";
+import DayReport from "./pages/reports/DayReport";
+import MonthReport from "./pages/reports/MonthReport";
+import YearReport from "./pages/reports/YearReport";
+import PeriodReport from "./pages/reports/PeriodReport";
+
 
 
 
@@ -59,6 +65,12 @@ function App() {
             <Route path="/production/edit" element={<PrivateRoute> <EditProduction/> </PrivateRoute>} />
 
             <Route path="/observation" element={<PrivateRoute> <Observation/> </PrivateRoute>} />
+
+            <Route path="/reports" element={<PrivateRoute> <Reports/> </PrivateRoute>} />
+            <Route path="/reports-day" element={<PrivateRoute> <DayReport/> </PrivateRoute>} />
+            <Route path="/reports-month" element={<PrivateRoute> <MonthReport /> </PrivateRoute>} />
+            <Route path="/reports-year" element={<PrivateRoute> <YearReport /> </PrivateRoute>} />
+            <Route path="/reports-period" element={<PrivateRoute> <PeriodReport /> </PrivateRoute>} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<NotFound />} />
