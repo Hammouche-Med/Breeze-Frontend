@@ -92,12 +92,8 @@ function NavBar() {
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown"
           >
-            <Link to="/users/profile" className="dropdown-item" href="#">
-              <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
-              Profile
-            </Link>
-           
-            <div className="dropdown-divider" />
+            
+          
             <a
               className="dropdown-item"
               href="#"

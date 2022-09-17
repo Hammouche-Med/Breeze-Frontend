@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import SideBar from "../../components/SideBar";
+import { CSVLink } from "react-csv";
 
 function YearReport() {
-
   const [year, setYear] = useState(moment().format("YYYY-MM-DD"));
   const [type, setType] = useState("METAR");
   const [reports, setReports] = useState([]);
@@ -31,8 +31,33 @@ function YearReport() {
     getReport();
   }, [year, type]);
 
+  const csvMetarHeader = [
+    { label: "Station", key: "stat_info.stat_name" },
+    { label: "OACI", key: "stat_info.stat_oaci" },
+    { label: "OMM", key: "stat_info.stat_omm" },
+    { label: "Prévue", key: "stat_info.taux.expected_d" },
+    { label: "Reçue", key: "rec_num" },
+    { label: "Prod", key: "month_prod" },
+    { label: "H+3", key: "s_prodh1" },
+    { label: "H+5", key: "s_prodh2" },
+    { label: "Rtd<H+33", key: "s_rtdH1" },
+    { label: "Rtd<H+49", key: "s_rtdH2" },
+    { label: "Rtd>H+49", key: "s_rtdH3" },
+  ];
+  const csvSynopHeader = [
+    { label: "Station", key: "stat_info.stat_name" },
+    { label: "OACI", key: "stat_info.stat_oaci" },
+    { label: "OMM", key: "stat_info.stat_omm" },
+    { label: "Prévue", key: "stat_info.taux.expected_d" },
+    { label: "Reçue", key: "rec_num" },
+    { label: "Prod", key: "month_prod" },
+    { label: "H+5", key: "s_prodh1" },
+    { label: "H+10", key: "s_prodh2" },
+    { label: "Rtd<2H", key: "s_rtdH1" },
+    { label: "Rtd<6H", key: "s_rtdH2" },
+    { label: "Rtd>6H", key: "s_rtdH3" },
+  ];
   return (
-
     <div id="wrapper">
       <SideBar />
       <div id="content-wrapper" className="d-flex flex-column">
@@ -45,6 +70,29 @@ function YearReport() {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
+                    {type === "METAR" ? (
+                      <CSVLink
+                        headers={csvMetarHeader}
+                        className="btn btn-gray btn-circle btn-lg float-right"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="EXPORT METAR REPPORT TO CSV "
+                        data={reports}
+                      >
+                        <i className="fa fa-print"></i>{" "}
+                      </CSVLink>
+                    ) : (
+                      <CSVLink
+                        headers={csvSynopHeader}
+                        className="btn btn-gray btn-circle btn-lg float-right"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="EXPORT SYNOP REPPORT TO CSV "
+                        data={reports}
+                      >
+                        <i className="fa fa-print"></i>{" "}
+                      </CSVLink>
+                    )}
                     <h3 className="card-title">
                       Rapport Annuel de la Production des Stations
                       Méteorologique :{" "}
@@ -120,9 +168,9 @@ function YearReport() {
                                 <td>{rpt.stat_info.stat_oaci}</td>
                                 <td>{rpt.stat_info.stat_omm}</td>
                                 {rpt.stat_info.taux ? (
-                                  <td>{rpt.stat_info.taux.expected_d*365}</td>
+                                  <td>{rpt.stat_info.taux.expected_d * 365}</td>
                                 ) : (
-                                  <td>{rpt.stat_info.expected_d*365}</td>
+                                  <td>{rpt.stat_info.expected_d * 365}</td>
                                 )}
                                 <td>{rpt.rec_num}</td>
                                 <td>{rpt.year_prod}%</td>
@@ -174,7 +222,7 @@ function YearReport() {
         <Footer />
       </div>
     </div>
-  )
+  );
 }
 
-export default YearReport
+export default YearReport;

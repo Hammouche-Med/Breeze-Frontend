@@ -4,34 +4,61 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import SideBar from "../../components/SideBar";
-
+import { CSVLink } from "react-csv";
 
 function DayReport() {
-    const [day, setDay] = useState(moment().format("YYYY-MM-DD")) 
-    const [type, setType] = useState("METAR")
-    const [reports, setReports] = useState([])
+  const [day, setDay] = useState(moment().format("YYYY-MM-DD"));
+  const [type, setType] = useState("METAR");
+  const [reports, setReports] = useState([]);
 
-    const getReport = async () => {
-        const options = {
-            date: day,
-            obs_type: type
-        }
-        const url = "http://127.0.0.1:8000/api/v1/report/all/day";
-        const token = localStorage.getItem("token");
-        const res = await axios.post(url, options ,{
-          headers: {
-            Authorization: "Bearer " + JSON.parse(token),
-          },
-        });
-        if (res.status === 200) {
-            setReports(() => res.data);
-        }
-      };
-    useEffect(() => {
-        getReport()
-    }, [day, type])
-    
-    return (
+  const getReport = async () => {
+    const options = {
+      date: day,
+      obs_type: type,
+    };
+    const url = "http://127.0.0.1:8000/api/v1/report/all/day";
+    const token = localStorage.getItem("token");
+    const res = await axios.post(url, options, {
+      headers: {
+        Authorization: "Bearer " + JSON.parse(token),
+      },
+    });
+    if (res.status === 200) {
+      setReports(() => res.data);
+    }
+  };
+  useEffect(() => {
+    getReport();
+  }, [day, type]);
+
+  const csvMetarHeader = [
+    { label: "Station", key: "stat_info.stat_name" },
+    { label: "OACI", key: "stat_info.stat_oaci" },
+    { label: "OMM", key: "stat_info.stat_omm" },
+    { label: "Prévue", key: "stat_info.taux.expected_d" },
+    { label: "Reçue", key: "rec_num" },
+    { label: "Prod", key: "day_prod" },
+    { label: "H+3", key: "s_prodh1" },
+    { label: "H+5", key: "s_prodh2" },
+    { label: "Rtd<H+33", key: "s_rtdH1" },
+    { label: "Rtd<H+49", key: "s_rtdH2" },
+    { label: "Rtd>H+49", key: "s_rtdH3" },
+  ];
+  const csvSynopHeader = [
+    { label: "Station", key: "stat_info.stat_name" },
+    { label: "OACI", key: "stat_info.stat_oaci" },
+    { label: "OMM", key: "stat_info.stat_omm" },
+    { label: "Prévue", key: "stat_info.taux.expected_d" },
+    { label: "Reçue", key: "rec_num" },
+    { label: "Prod", key: "day_prod" },
+    { label: "H+5", key: "s_prodh1" },
+    { label: "H+10", key: "s_prodh2" },
+    { label: "Rtd<2H", key: "s_rtdH1" },
+    { label: "Rtd<6H", key: "s_rtdH2" },
+    { label: "Rtd>6H", key: "s_rtdH3" },
+  ];
+
+  return (
     <div id="wrapper">
       <SideBar />
       <div id="content-wrapper" className="d-flex flex-column">
@@ -44,6 +71,30 @@ function DayReport() {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
+                    {type === "METAR" ? (
+                      <CSVLink
+                        headers={csvMetarHeader}
+                        className="btn btn-gray btn-circle btn-lg float-right"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="EXPORT METAR REPPORT TO CSV "
+                        data={reports}
+                      >
+                        <i className="fa fa-print"></i>{" "}
+                      </CSVLink>
+                    ) : (
+                      <CSVLink
+                        headers={csvSynopHeader}
+                        className="btn btn-gray btn-circle btn-lg float-right"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="EXPORT SYNOP REPPORT TO CSV "
+                        data={reports}
+                      >
+                        <i className="fa fa-print"></i>{" "}
+                      </CSVLink>
+                    )}
+
                     <h3 className="card-title">
                       Rapport Journalier de la Production des Stations
                       Méteorologique :{" "}
@@ -52,13 +103,21 @@ function DayReport() {
                   <div className="card-header">
                     <div className="row">
                       <div className="col-6">
-                        <select className="form-control form-control-lg" onChange={(e)=>setType(e.target.value)}>
+                        <select
+                          className="form-control form-control-lg"
+                          onChange={(e) => setType(e.target.value)}
+                        >
                           <option value="METAR">METAR</option>
                           <option value="SYNOP">SYNOP</option>
                         </select>
                       </div>
                       <div className="col-6">
-                        <input className="form-control form-control-lg" type="date" value={day} onChange={(e)=>setDay(e.target.value)} />
+                        <input
+                          className="form-control form-control-lg"
+                          type="date"
+                          value={day}
+                          onChange={(e) => setDay(e.target.value)}
+                        />
                       </div>
                     </div>
                   </div>
@@ -73,11 +132,23 @@ function DayReport() {
                           <th>Prévue</th>
                           <th>Reçue</th>
                           <th>Prod</th>
-                          {type==="METAR"?(<th>Rtd{"<"}H+3 </th>) : (<th>Rtd{"<"}H+5 </th>)}
-                          {type==="METAR"?(<th>Rtd{"<"}H+5 </th>) : (<th>Rtd{"<"}H+10 </th>)}
-                          {type==="METAR"?(<th>Rtd{"<"}H+33 </th>) : (<th>Rtd{"<"}2H </th>)}
-                          {type==="METAR"?(<th>Rtd{"<"}H+49 </th>) : (<th>Rtd{"<"}6H </th>)}
-                          {type==="METAR"?(<th>Rtd{">"}H+49 </th>) : (<th>Rtd{">"}6H </th>)}
+                          {type === "METAR" ? <th>H+3 </th> : <th>H+5 </th>}
+                          {type === "METAR" ? <th>H+5 </th> : <th>H+10 </th>}
+                          {type === "METAR" ? (
+                            <th>Rtd{"<"}H+33 </th>
+                          ) : (
+                            <th>Rtd{"<"}2H </th>
+                          )}
+                          {type === "METAR" ? (
+                            <th>Rtd{"<"}H+49 </th>
+                          ) : (
+                            <th>Rtd{"<"}6H </th>
+                          )}
+                          {type === "METAR" ? (
+                            <th>Rtd{">"}H+49 </th>
+                          ) : (
+                            <th>Rtd{">"}6H </th>
+                          )}
 
                           <th>Action</th>
                         </tr>
@@ -87,11 +158,14 @@ function DayReport() {
                           {reports.map((rpt) => {
                             return (
                               <tr key={rpt.stat_info.stat_id}>
-
                                 <td>{rpt.stat_info.stat_name}</td>
                                 <td>{rpt.stat_info.stat_oaci}</td>
                                 <td>{rpt.stat_info.stat_omm}</td>
-                                {rpt.stat_info.taux?(<td>{rpt.stat_info.taux.expected_d}</td>):(<td>{rpt.stat_info.expected_d}</td>)}
+                                {rpt.stat_info.taux ? (
+                                  <td>{rpt.stat_info.taux.expected_d}</td>
+                                ) : (
+                                  <td>{rpt.stat_info.expected_d}</td>
+                                )}
                                 <td>{rpt.rec_num}</td>
                                 <td>{rpt.day_prod}%</td>
                                 <td>{rpt.s_prodh1}%</td>
@@ -125,7 +199,7 @@ function DayReport() {
                             <td></td>
                             <td></td>
                             <td></td>
-                            
+
                             <td>Loading...</td>
                             <td></td>
                           </tr>

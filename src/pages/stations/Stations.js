@@ -4,9 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import SideBar from "../../components/SideBar";
+import { CSVLink } from "react-csv";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 function Stations() {
+  const { user } = useAuth();
   const [stations, setStations] = useState([]);
   const [stationDetails, setStationDetails] = useState(null);
 
@@ -56,6 +59,18 @@ function Stations() {
         getStations();
       });
   };
+
+  const csvHeader = [
+    { label: "ID", key: "id" },
+    { label: "OACI", key: "OACI" },
+    { label: "OMM", key: "OMM" },
+    { label: "Region", key: "reg.name" },
+    { label: "Name", key: "name" },
+    { label: "Category", key: "category" },
+    { label: "longitude", key: "longitude" },
+    { label: "latitude", key: "latitude" },
+    { label: "altitude", key: "altitude" },
+  ];
   return (
     <div id="wrapper">
       <SideBar />
@@ -68,15 +83,30 @@ function Stations() {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <Link
-                      to="/stations/create"
-                      className="btn btn-primary btn-circle btn-lg float-right"
+                    {user.is_superuser && (
+                      <>
+                        <Link
+                          to="/stations/create"
+                          className="btn btn-primary btn-circle btn-lg float-right"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Add"
+                        >
+                          <i className="fa fa-plus"></i>{" "}
+                        </Link>
+                      </>
+                    )}
+
+                    <CSVLink
+                      headers={csvHeader}
+                      className="btn btn-gray btn-circle btn-lg float-right"
                       data-toggle="tooltip"
                       data-placement="top"
-                      title="Add"
+                      title="EXPORT TO CSV"
+                      data={stations}
                     >
-                      <i className="fa fa-plus"></i>{" "}
-                    </Link>
+                      <i className="fa fa-print"></i>{" "}
+                    </CSVLink>
                     <h3 className="card-title">
                       List of all current Stations :{" "}
                     </h3>
@@ -121,39 +151,43 @@ function Stations() {
                                     <i className="fas fa-info-circle"></i>
                                   </a>
                                   &nbsp;&nbsp;
-                                  <Link
-                                    className="btn btn-warning btn-circle"
-                                    to="/stations/edit"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    state={{
-                                      id:stat.id,
-                                      name:stat.name, 
-                                      oaci:stat.OACI, 
-                                      omm:stat.OMM, 
-                                      category:stat.category, 
-                                      longitude:stat.longitude, 
-                                      altitude:stat.altitude, 
-                                      latitude:stat.latitude, 
-                                      region:stat.region,
-                                      region_name:stat.region_name
-                                    }}
-                                  >
-                                    {" "}
-                                    <i className="fas fa-edit"></i>
-                                  </Link>
-                                  &nbsp;&nbsp;
-                                  <a
-                                    className="btn btn-danger btn-circle"
-                                    href="#"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Delete"
-                                    onClick={() => handeDelete(stat.id)}
-                                  >
-                                    {" "}
-                                    <i className="fas fa-trash"></i>
-                                  </a>
+                                  {user.is_superuser && (
+                                    <>
+                                      <Link
+                                        className="btn btn-warning btn-circle"
+                                        to="/stations/edit"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        state={{
+                                          id: stat.id,
+                                          name: stat.name,
+                                          oaci: stat.OACI,
+                                          omm: stat.OMM,
+                                          category: stat.category,
+                                          longitude: stat.longitude,
+                                          altitude: stat.altitude,
+                                          latitude: stat.latitude,
+                                          region: stat.region,
+                                          region_name: stat.region_name,
+                                        }}
+                                      >
+                                        {" "}
+                                        <i className="fas fa-edit"></i>
+                                      </Link>
+                                      &nbsp;&nbsp;
+                                      <a
+                                        className="btn btn-danger btn-circle"
+                                        href="#"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Delete"
+                                        onClick={() => handeDelete(stat.id)}
+                                      >
+                                        {" "}
+                                        <i className="fas fa-trash"></i>
+                                      </a>
+                                    </>
+                                  )}
                                 </td>
                               </tr>
                             );

@@ -33,6 +33,9 @@ import MonthReport from "./pages/reports/MonthReport";
 import YearReport from "./pages/reports/YearReport";
 import PeriodReport from "./pages/reports/PeriodReport";
 
+import StationProd from "./pages/settings/StationProd";
+import EditStatProd from "./pages/settings/EditStatProd";
+
 
 
 
@@ -71,6 +74,9 @@ function App() {
             <Route path="/reports-month" element={<PrivateRoute> <MonthReport /> </PrivateRoute>} />
             <Route path="/reports-year" element={<PrivateRoute> <YearReport /> </PrivateRoute>} />
             <Route path="/reports-period" element={<PrivateRoute> <PeriodReport /> </PrivateRoute>} />
+
+            <Route path="/stat-prod" element={<PrivateRoute> <StationProd /> </PrivateRoute>} />
+            <Route path="/stat-prod/edit" element={<PrivateRoute> <EditStatProd /> </PrivateRoute>} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<NotFound />} />

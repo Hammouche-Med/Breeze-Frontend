@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 function UserProfile() {
   const { user } = useAuth();
 
@@ -53,42 +54,44 @@ function UserProfile() {
                       {profile.is_superuser ? "Admin" : "Staff"}{" "}
                     </p>
                     <p className="text-muted mb-4">{profile.email}</p>
-                    <div className="d-flex justify-content-center mb-2">
-                      <Link
-                        className="btn btn-warning btn-circle"
-                        to="/users/edit"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Edit"
-                        state={{
-                          id: profile.id,
-                          first_name: profile.first_name,
-                          last_name: profile.last_name,
-                          username: profile.username,
-                          email: profile.email,
-                          phone: profile.phone,
-                          is_superuser: profile.is_superuser,
-                        }}
-                      >
-                        {" "}
-                        <i className="fas fa-edit"></i>
-                      </Link>
-                      &nbsp;&nbsp;
-                      <Link
-                        className="btn btn-success btn-circle"
-                        to="/users/reset-password"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Reset Password"
-                        state={{
-                          id: profile.id,
-                        }}
-                      >
-                        {" "}
-                        <i className="fas fa-lock"></i>
-                      </Link>
-                      &nbsp;&nbsp;
-                    </div>
+                    {user.is_superuser && (
+                      <div className="d-flex justify-content-center mb-2">
+                        <Link
+                          className="btn btn-warning btn-circle"
+                          to="/users/edit"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Edit"
+                          state={{
+                            id: profile.id,
+                            first_name: profile.first_name,
+                            last_name: profile.last_name,
+                            username: profile.username,
+                            email: profile.email,
+                            phone: profile.phone,
+                            is_superuser: profile.is_superuser,
+                          }}
+                        >
+                          {" "}
+                          <i className="fas fa-edit"></i>
+                        </Link>
+                        &nbsp;&nbsp;
+                        <Link
+                          className="btn btn-success btn-circle"
+                          to="/users/reset-password"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Reset Password"
+                          state={{
+                            id: profile.id,
+                          }}
+                        >
+                          {" "}
+                          <i className="fas fa-lock"></i>
+                        </Link>
+                        &nbsp;&nbsp;
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

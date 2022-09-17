@@ -6,8 +6,11 @@ import NavBar from "../../components/NavBar";
 import SideBar from "../../components/SideBar";
 import Swal from "sweetalert2";
 import UserInfo from "./UserInfo";
+import useAuth from "../../hooks/useAuth";
+
 
 function Users() {
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [usersList, setUsersList] = useState([]);
   const [userDetails, setUserDetails] = useState(null);
@@ -128,6 +131,7 @@ function Users() {
                                   >
                                     <i className="fas fa-info-circle"></i>
                                   </a>
+                                  
                                   &nbsp;&nbsp;
                                   <Link
                                     className="btn btn-warning btn-circle"

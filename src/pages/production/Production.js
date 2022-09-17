@@ -5,11 +5,12 @@ import Swal from "sweetalert2";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import SideBar from "../../components/SideBar";
+import useAuth from "../../hooks/useAuth";
 import InfoProduction from "./InfoProduction";
 
 function Production() {
+  const { user } = useAuth();
   const [taux_prod, setTaux_prod] = useState([]);
-
   const [tauxDetails, setTauxDetails] = useState(null);
 
   useEffect(() => {
@@ -70,15 +71,20 @@ function Production() {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <Link
-                      to="/production/create"
-                      className="btn btn-primary btn-circle btn-lg float-right"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title="Add"
-                    >
-                      <i className="fa fa-plus"></i>{" "}
-                    </Link>
+                    {user.is_superuser && (
+                      <>
+                        {" "}
+                        <Link
+                          to="/production/create"
+                          className="btn btn-primary btn-circle btn-lg float-right"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Add"
+                        >
+                          <i className="fa fa-plus"></i>{" "}
+                        </Link>
+                      </>
+                    )}
                     <h3 className="card-title">
                       List of all current Taux de Production :{" "}
                     </h3>
@@ -136,40 +142,44 @@ function Production() {
                                     <i className="fas fa-info-circle"></i>
                                   </a>
                                   &nbsp;&nbsp;
-                                  <Link
-                                    className="btn btn-warning btn-circle"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Edit"
-                                    to="/production/edit"
-                                    state={{
-                                      id: taux.id,
-                                      name: taux.name,
-                                      start_t: taux.start_t,
-                                      end_t: taux.end_t,
-                                      rate: taux.rate,
-                                      type_obs: taux.type_obs,
-                                      delay_1t: taux.delay_1t,
-                                      delay_2t: taux.delay_2t,
-                                      is_essential: taux.is_essential,
-                                      full_day: taux.full_day
-                                    }}
-                                  >
-                                    {" "}
-                                    <i className="fas fa-edit"></i>
-                                  </Link>
-                                  &nbsp;&nbsp;
-                                  <a
-                                    className="btn btn-danger btn-circle"
-                                    href="#"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Delete"
-                                    onClick={() => handeDelete(taux.id)}
-                                  >
-                                    {" "}
-                                    <i className="fas fa-trash"></i>
-                                  </a>
+                                  {user.is_superuser && (
+                                    <>
+                                      <Link
+                                        className="btn btn-warning btn-circle"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Edit"
+                                        to="/production/edit"
+                                        state={{
+                                          id: taux.id,
+                                          name: taux.name,
+                                          start_t: taux.start_t,
+                                          end_t: taux.end_t,
+                                          rate: taux.rate,
+                                          type_obs: taux.type_obs,
+                                          delay_1t: taux.delay_1t,
+                                          delay_2t: taux.delay_2t,
+                                          is_essential: taux.is_essential,
+                                          full_day: taux.full_day,
+                                        }}
+                                      >
+                                        {" "}
+                                        <i className="fas fa-edit"></i>
+                                      </Link>
+                                      &nbsp;&nbsp;
+                                      <a
+                                        className="btn btn-danger btn-circle"
+                                        href="#"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Delete"
+                                        onClick={() => handeDelete(taux.id)}
+                                      >
+                                        {" "}
+                                        <i className="fas fa-trash"></i>
+                                      </a>
+                                    </>
+                                  )}
                                 </td>
                               </tr>
                             );

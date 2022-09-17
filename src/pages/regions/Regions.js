@@ -6,10 +6,13 @@ import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import SideBar from "../../components/SideBar";
 import RegionInfo from "./RegionInfo";
+import { CSVLink } from "react-csv";
+import useAuth from "../../hooks/useAuth";
 
 function Regions() {
+  const { user } = useAuth();
   const [regions, setRegions] = useState([]);
-  const [regionDetails, setRegionDetails] = useState(null)
+  const [regionDetails, setRegionDetails] = useState(null);
 
   useEffect(() => {
     getRegions();
@@ -71,15 +74,30 @@ function Regions() {
               <div className="col-12">
                 <div className="card">
                   <div className="card-header">
-                    <Link
-                      to="/regions/create"
-                      className="btn btn-primary btn-circle btn-lg float-right"
+                    {user.is_superuser && (
+                      <>
+                        <Link
+                          to="/regions/create"
+                          className="btn btn-primary btn-circle btn-lg float-right"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Add"
+                        >
+                          <i className="fa fa-plus"></i>{" "}
+                        </Link>
+                      </>
+                    )}
+
+                    <CSVLink
+                      className="btn btn-gray btn-circle btn-lg float-right"
                       data-toggle="tooltip"
                       data-placement="top"
-                      title="Add"
+                      title="EXPORT TO CSV"
+                      data={regions}
                     >
-                      <i className="fa fa-plus"></i>{" "}
-                    </Link>
+                      <i className="fa fa-print"></i>{" "}
+                    </CSVLink>
+
                     <h3 className="card-title">
                       List of all current Regions :{" "}
                     </h3>
@@ -91,7 +109,9 @@ function Regions() {
                           <th>ID</th>
                           <th>Name</th>
                           <th>Code</th>
-                          <th className="px-2" style= {{ textAlign: "right" }}>Action</th>
+                          <th className="px-2" style={{ textAlign: "right" }}>
+                            Action
+                          </th>
                         </tr>
                       </thead>{" "}
                       {regions.length > 0 ? (
@@ -102,7 +122,7 @@ function Regions() {
                                 <td>{reg.id}</td>
                                 <td>{reg.name}</td>
                                 <td>{reg.code}</td>
-                                <td style= {{ textAlign: "right"}}>
+                                <td style={{ textAlign: "right" }}>
                                   <a
                                     className="btn btn-info btn-circle"
                                     href="#"
@@ -115,30 +135,37 @@ function Regions() {
                                     <i className="fas fa-info-circle"></i>
                                   </a>
                                   &nbsp;&nbsp;
-                                  <Link
-                                    className="btn btn-warning btn-circle"
-                                    to="/regions/edit"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Edit"
-                                    state={{ id: reg.id,  name: reg.name, code: reg.code}}
-                                  >
-                                    {" "}
-                                    <i className="fas fa-edit"></i>
-                                  </Link>
-                                  &nbsp;&nbsp;
-                                  <a
-                                    className="btn btn-danger btn-circle"
-                                    href="#"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Delete"
-
-                                    onClick={() => handeDelete(reg.id)}
-                                  >
-                                    {" "}
-                                    <i className="fas fa-trash"></i>
-                                  </a>
+                                  {user.is_superuser && (
+                                    <>
+                                      <Link
+                                        className="btn btn-warning btn-circle"
+                                        to="/regions/edit"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Edit"
+                                        state={{
+                                          id: reg.id,
+                                          name: reg.name,
+                                          code: reg.code,
+                                        }}
+                                      >
+                                        {" "}
+                                        <i className="fas fa-edit"></i>
+                                      </Link>
+                                      &nbsp;&nbsp;
+                                      <a
+                                        className="btn btn-danger btn-circle"
+                                        href="#"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Delete"
+                                        onClick={() => handeDelete(reg.id)}
+                                      >
+                                        {" "}
+                                        <i className="fas fa-trash"></i>
+                                      </a>
+                                    </>
+                                  )}
                                 </td>
                               </tr>
                             );
