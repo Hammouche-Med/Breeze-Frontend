@@ -93,6 +93,7 @@ function Production() {
                           <th>Début du travail</th>
                           <th>Fin du travail</th>
                           <th>Taux</th>
+                          <th>Essential</th>
                           <th>Prévue /J</th>
                           <th>Prévue ce /M</th>
                           <th>Rtd /1T</th>
@@ -117,7 +118,7 @@ function Production() {
                                     ? "1h"
                                     : "3h"}
                                 </td>
-
+                                <td>{taux.is_essential ? "True" : "False"}</td>
                                 <td>{taux.expected_d}</td>
                                 <td>{taux.expected_m}</td>
                                 <td>{taux.delay_1t}</td>
@@ -150,6 +151,8 @@ function Production() {
                                       type_obs: taux.type_obs,
                                       delay_1t: taux.delay_1t,
                                       delay_2t: taux.delay_2t,
+                                      is_essential: taux.is_essential,
+                                      full_day: taux.full_day
                                     }}
                                   >
                                     {" "}

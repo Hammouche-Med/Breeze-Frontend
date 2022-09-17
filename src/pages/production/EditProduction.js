@@ -9,7 +9,7 @@ import SideBar from "../../components/SideBar";
 function EditProduction() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { id, name, start_t, end_t, rate, type_obs, delay_1t, delay_2t } =
+  const { id, name, start_t, end_t, rate, type_obs, delay_1t, delay_2t,is_essential,full_day } =
     location.state;
 
   const [newName, setNewName] = useState(name);
@@ -19,6 +19,8 @@ function EditProduction() {
   const [newType_obs, setNewType_obs] = useState(type_obs);
   const [newDelay_1t, setNewDelay_1] = useState(delay_1t);
   const [newDelay_2t, setNewDelay_2] = useState(delay_2t);
+  const [newIs_essential, setNewIs_essential] = useState(is_essential);
+  const [newFull_day, setNewFull_day] = useState(full_day);
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
@@ -31,6 +33,8 @@ function EditProduction() {
     newType_obs,
     newDelay_1t,
     newDelay_2t,
+    newIs_essential,
+    newFull_day
   ]);
 
   const updateTauxProd = async (e) => {
@@ -46,7 +50,13 @@ function EditProduction() {
         type_obs: newType_obs,
         delay_1t: newDelay_1t,
         delay_2t: newDelay_2t,
+        is_essential: newIs_essential,
+        full_day: newFull_day
       };
+      if(newFull_day){
+        updatedTauxProd.start_t = "00:00"
+        updatedTauxProd.end_t = "23:59"
+      }
       axios
         .put(url + id, updatedTauxProd, {
           headers: {
@@ -101,6 +111,22 @@ function EditProduction() {
                       required
                     />
                   </div>
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="exampleCheck2"
+                      checked={newFull_day}
+                      value={newFull_day}
+                      onChange={(e) => setNewFull_day(!newFull_day)}
+                    />
+                    <label className="form-check-label" htmlFor="exampleCheck2">
+                      Full-day
+                    </label>
+                  </div>
+                  <br></br>
+                {newFull_day == false &&   
+                <>
                   <div className="form-group">
                     <label htmlFor="exampleInputTeggxt2">
                       Début du travail
@@ -123,6 +149,7 @@ function EditProduction() {
                       required
                     />
                   </div>
+                </>}
                   <div className="form-group">
                     <label>Type Observation</label>
                     <select
@@ -165,6 +192,20 @@ function EditProduction() {
                       onChange={(e) => setNewDelay_2(e.target.value)}
                       required
                     />
+                  </div>
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="exampleCheck1"
+                      name="is_superuser"
+                      checked={newIs_essential}
+                      value={newIs_essential}
+                      onChange={(e) => setNewIs_essential(!newIs_essential)}
+                    />
+                    <label className="form-check-label" htmlFor="exampleCheck1">
+                      Essential
+                    </label>
                   </div>
                 </div>
                 {/* /.card-body */}

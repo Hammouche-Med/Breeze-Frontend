@@ -14,17 +14,20 @@ function AddProduction() {
   const [rate, setRate] = useState("1800");
   const [delay_1t, setDelay_1t] = useState(0);
   const [delay_2t, setDelay_2t] = useState(0);
+  const [is_essential, setIs_essential] = useState(true);
+  const [full_day, setFull_day] = useState(true);
   const [errorMsg, setErrorMsg] = useState(0);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setErrorMsg("");
-  }, [name, end_t, rate, type_obs, start_t, delay_1t, delay_2t]);
+  }, [name, end_t, rate, type_obs, start_t, delay_1t, delay_2t, is_essential,full_day]);
 
   const createTaux_Prod = async (e) => {
     e.preventDefault();
     try {
+
       const submittedData = {
         name: name,
         start_t: start_t,
@@ -33,7 +36,13 @@ function AddProduction() {
         type_obs: type_obs,
         delay_1t: delay_1t,
         delay_2t: delay_2t,
+        is_essential: is_essential,
+        full_day:full_day,
       };
+      if(full_day){
+        submittedData.start_t = "00:00"
+        submittedData.end_t = "23:59"
+      }
       const url = "http://127.0.0.1:8000/api/v1/production/create";
       const token = localStorage.getItem("token");
       const res = await axios
@@ -91,7 +100,23 @@ function AddProduction() {
                       required
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="exampleCheck2"
+                      checked={full_day}
+                      value={full_day}
+                      onChange={(e) => setFull_day(!full_day)}
+                    />
+                    <label className="form-check-label" htmlFor="exampleCheck2">
+                      Full-day
+                    </label>
+                  </div>
+                  <br></br>
+                {full_day == false &&   
+                <>
+                <div className="form-group">
                     <label htmlFor="exampleInputTeggxt2">Début du travail</label>
                     <input
                       type="time"
@@ -111,6 +136,10 @@ function AddProduction() {
                       required
                     />
                   </div>
+                  </>
+                  }
+                 
+
                   <div className="form-group">
                     <label>Type Observation</label>
                     <select
@@ -153,6 +182,20 @@ function AddProduction() {
                       onChange={(e) => setDelay_2t(e.target.value)}
                       required
                     />
+                  </div>
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="exampleCheck1"
+                      name="is_superuser"
+                      checked={is_essential}
+                      value={is_essential}
+                      onChange={(e) => setIs_essential(!is_essential)}
+                    />
+                    <label className="form-check-label" htmlFor="exampleCheck1">
+                      Essential
+                    </label>
                   </div>
                 </div>
                 {/* /.card-body */}
