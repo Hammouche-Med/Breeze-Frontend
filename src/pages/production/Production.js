@@ -41,18 +41,18 @@ function Production() {
   };
   const handeDelete = async (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Êtes-vous sûr?",
+      text: "Vous ne pourrez pas revenir en arrière!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Oui, supprimez-le!",
     })
       .then((result) => {
         if (result.isConfirmed) {
           deleteTaux_prod(id);
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          Swal.fire("Supprimé!", "Les données ont été supprimées.", "success");
         }
       })
       .then(() => {
@@ -79,14 +79,14 @@ function Production() {
                           className="btn btn-primary btn-circle btn-lg float-right"
                           data-toggle="tooltip"
                           data-placement="top"
-                          title="Add"
+                          title="Ajoute"
                         >
                           <i className="fa fa-plus"></i>{" "}
                         </Link>
                       </>
                     )}
                     <h3 className="card-title">
-                      List of all current Taux de Production :{" "}
+                    Liste de tous les taux de production actuels :{" "}
                     </h3>
                   </div>
                   <div className="card-body table-responsive p-0">
@@ -94,7 +94,7 @@ function Production() {
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Name</th>
+                          <th>Nom</th>
                           <th>Type d'Observation</th>
                           <th>Début du travail</th>
                           <th>Fin du travail</th>
@@ -148,7 +148,7 @@ function Production() {
                                         className="btn btn-warning btn-circle"
                                         data-toggle="tooltip"
                                         data-placement="top"
-                                        title="Edit"
+                                        title="Éditer"
                                         to="/production/edit"
                                         state={{
                                           id: taux.id,
@@ -172,7 +172,7 @@ function Production() {
                                         href="#"
                                         data-toggle="tooltip"
                                         data-placement="top"
-                                        title="Delete"
+                                        title="Supprimer"
                                         onClick={() => handeDelete(taux.id)}
                                       >
                                         {" "}

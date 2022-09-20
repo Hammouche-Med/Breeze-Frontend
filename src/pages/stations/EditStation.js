@@ -8,8 +8,19 @@ import SideBar from "../../components/SideBar";
 
 function EditStation() {
   const location = useLocation();
-  const navigate = useNavigate()
-  const {id, name, oaci, omm, category, longitude, altitude, latitude, region, region_name } = location.state;
+  const navigate = useNavigate();
+  const {
+    id,
+    name,
+    oaci,
+    omm,
+    category,
+    longitude,
+    altitude,
+    latitude,
+    region,
+    region_name,
+  } = location.state;
 
   const [newName, setNewName] = useState(name);
   const [newOaci, setNewOaci] = useState(oaci);
@@ -67,7 +78,7 @@ function EditStation() {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Region Updated Successfully",
+              title: "Station mise à jour avec succès",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -88,7 +99,7 @@ function EditStation() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Update Station </h3>
+                <h3 className="card-title"> Mettre à jour la station :</h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -124,7 +135,7 @@ function EditStation() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Name</label>
+                    <label htmlFor="exampleInputText2">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -152,12 +163,12 @@ function EditStation() {
                           );
                         })
                       ) : (
-                        <option>no region found</option>
+                        <option>aucune région trouvée</option>
                       )}
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Category</label>
+                    <label htmlFor="exampleInputText2">Catégorie</label>
                     <input
                       type="text"
                       className="form-control"
@@ -208,7 +219,13 @@ function EditStation() {
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Submit
+                    Mettre à jour
+                  </button>{" "}
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="btn btn-danger"
+                  >
+                    Annuler
                   </button>
                 </div>
               </form>

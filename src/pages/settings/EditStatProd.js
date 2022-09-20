@@ -73,7 +73,7 @@ function EditStatProd() {
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Station-Production Updated Successfully",
+                title: "Station-production mise à jour avec succès",
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -95,7 +95,7 @@ function EditStatProd() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Update Station {name} </h3>
+                <h3 className="card-title">Mettre à jour la station {name} :</h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -147,15 +147,21 @@ function EditStatProd() {
                           )}
                         })
                       ) : (
-                        <option>no taux-prod found</option>
+                        <option>aucun taux-prod trouvé</option>
                       )}
                     </select>
                   </div>
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
+                <button type="submit" className="btn btn-primary">
+                    Mettre à jour
+                  </button>{" "}
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="btn btn-danger"
+                  >
+                    Annuler
                   </button>
                 </div>
               </form>

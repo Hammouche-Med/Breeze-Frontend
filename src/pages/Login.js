@@ -67,7 +67,7 @@ function Login() {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                        <h1 className="h4 text-gray-900 mb-4">Bienvenue!</h1>
                       </div>
                     )}
 
@@ -79,7 +79,7 @@ function Login() {
                           name="email"
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
-                          placeholder="Enter Email Address..."
+                          placeholder="Entrer l'adresse e-mail..."
                           ref={userRef}
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
@@ -92,7 +92,7 @@ function Login() {
                           name="password"
                           className="form-control form-control-user"
                           id="exampleInputPassword"
-                          placeholder="Password"
+                          placeholder="Mot de passe"
                           value={password}
                           onChange={(e) => setpassword(e.target.value)}
                           required

@@ -40,7 +40,7 @@ function EditRegion() {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Region Updated Successfully",
+              title: "Région mise à jour avec succès",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -61,7 +61,7 @@ function EditRegion() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Update Region : </h3>
+                <h3 className="card-title">Mettre à jour la région : </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -73,7 +73,7 @@ function EditRegion() {
               <form onSubmit={editRegion}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">Name</label>
+                    <label htmlFor="exampleInputText1">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -99,7 +99,11 @@ function EditRegion() {
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Submit
+                  Mettre à jour
+                  </button>
+                  {" "}
+                  <button onClick={() => navigate(-1)} className="btn btn-danger">
+                  Annuler
                   </button>
                 </div>
               </form>

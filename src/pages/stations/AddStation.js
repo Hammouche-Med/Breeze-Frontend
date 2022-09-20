@@ -75,7 +75,7 @@ function AddStation() {
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Station Created Successfully",
+                title: "Station créée avec succès",
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -97,7 +97,7 @@ function AddStation() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Add Station </h3>
+                <h3 className="card-title">Ajouter une Station: </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -133,7 +133,7 @@ function AddStation() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Name</label>
+                    <label htmlFor="exampleInputText2">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -162,12 +162,12 @@ function AddStation() {
                           );
                         })
                       ) : (
-                        <option>no region found</option>
+                        <option>aucune région trouvée</option>
                       )}
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Category</label>
+                    <label htmlFor="exampleInputText2">Catégorie</label>
                     <input
                       type="text"
                       className="form-control"
@@ -217,8 +217,11 @@ function AddStation() {
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
+                <button type="submit" className="btn btn-primary">
+                    Ajouter
+                  </button>{" "}
+                  <button onClick={() => navigate(-1)} className="btn btn-danger">
+                  Annuler
                   </button>
                 </div>
               </form>

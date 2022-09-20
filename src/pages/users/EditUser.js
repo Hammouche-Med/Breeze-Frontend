@@ -21,9 +21,6 @@ function EditUser() {
 
   const [errorMsg, setErrorMsg] = useState("");
 
-  useEffect(()=>{
-    console.log("prrrrr", id, first_name, last_name, username, email, is_superuser, newIs_superuser  )
-  },[])
 
   const updateUser = async (e) => {
     e.preventDefault()
@@ -51,7 +48,7 @@ function EditUser() {
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "User Updated Successfully",
+                title: "Utilisateur mis à jour avec succès",
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -74,7 +71,7 @@ function EditUser() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Update User </h3>
+                <h3 className="card-title">Mettre à jour l'utilisateur: </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -86,7 +83,7 @@ function EditUser() {
               <form onSubmit={updateUser}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">First Name</label>
+                    <label htmlFor="exampleInputText1">Prénom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -99,7 +96,7 @@ function EditUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Last Name</label>
+                    <label htmlFor="exampleInputText2">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -112,7 +109,7 @@ function EditUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText3">UserName</label>
+                    <label htmlFor="exampleInputText3">Nom d'utilisateur</label>
                     <input
                       type="text"
                       className="form-control"
@@ -125,7 +122,7 @@ function EditUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1">Email</label>
                     <input
                       type="email"
                       className="form-control"
@@ -138,7 +135,7 @@ function EditUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Phone Number</label>
+                    <label htmlFor="exampleInputEmail1">Téléphone</label>
                     <input
                       type="number"
                       className="form-control"
@@ -167,8 +164,14 @@ function EditUser() {
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
+                <button type="submit" className="btn btn-primary">
+                    Mettre à jour
+                  </button>{" "}
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="btn btn-danger"
+                  >
+                    Annuler
                   </button>
                 </div>
               </form>

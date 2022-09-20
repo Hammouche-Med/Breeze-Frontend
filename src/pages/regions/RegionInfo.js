@@ -19,11 +19,11 @@ function RegionInfo(props) {
             <div className="card-body box-profile">
               <div className="text-center">
                 
-              <h3 className="profile-username text-center">Region Details: </h3>
+              <h3 className="profile-username text-center">Région Détails: </h3>
               </div>
               <ul className="list-group list-group-unbordered mb-3">
                 <li className="list-group-item">
-                  <b>Name</b> <a className="float-right">{name}</a>
+                  <b>Nom</b> <a className="float-right">{name}</a>
                 </li>
                 <li className="list-group-item">
                   <b>Code</b> <a className="float-right">{code}</a>

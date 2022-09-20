@@ -29,12 +29,12 @@ function InfoProduction(props) {
               <div className="card-body box-profile">
                 <div className="text-center">
                   <h3 className="profile-username text-center">
-                    Taix-Produxtion Details:{" "}
+                    Taux-Production Détails:{" "}
                   </h3>
                 </div>
                 <ul className="list-group list-group-unbordered mb-3">
                   <li className="list-group-item">
-                    <b>Name</b> <a className="float-right">{name}</a>
+                    <b>Nom</b> <a className="float-right">{name}</a>
                   </li>
                   <li className="list-group-item">
                     <b>Type d'Observation</b>{" "}

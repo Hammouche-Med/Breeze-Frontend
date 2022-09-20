@@ -37,7 +37,7 @@ function AddRegion() {
               Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Region Created Successfully",
+                title: "Région créée avec succès",
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -60,7 +60,7 @@ function AddRegion() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Add Region </h3>
+                <h3 className="card-title">Ajouter une région :</h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -72,7 +72,7 @@ function AddRegion() {
               <form  onSubmit={createRegion}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">Name</label>
+                    <label htmlFor="exampleInputText1">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -98,7 +98,10 @@ function AddRegion() {
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Submit
+                    Ajouter
+                  </button>{" "}
+                  <button onClick={() => navigate(-1)} className="btn btn-danger">
+                  Annuler
                   </button>
                 </div>
               </form>

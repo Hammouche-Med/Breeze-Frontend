@@ -9,6 +9,7 @@ import SideBar from "../../components/SideBar";
 function EditProduction() {
   const location = useLocation();
   const navigate = useNavigate();
+  
   const { id, name, start_t, end_t, rate, type_obs, delay_1t, delay_2t,is_essential,full_day } =
     location.state;
 
@@ -68,7 +69,7 @@ function EditProduction() {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Taux-Prod Updated Successfully",
+              title: "Taux-Prod mis à jour avec succès",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -89,7 +90,7 @@ function EditProduction() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Add Taux de Production </h3>
+                <h3 className="card-title">Modifier taux de production </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -101,7 +102,7 @@ function EditProduction() {
               <form onSubmit={updateTauxProd}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">Name</label>
+                    <label htmlFor="exampleInputText1">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -121,8 +122,8 @@ function EditProduction() {
                       onChange={(e) => setNewFull_day(!newFull_day)}
                     />
                     <label className="form-check-label" htmlFor="exampleCheck2">
-                      Full-day
-                    </label>
+                    Journée complète                   
+                     </label>
                   </div>
                   <br></br>
                 {newFull_day == false &&   
@@ -151,7 +152,7 @@ function EditProduction() {
                   </div>
                 </>}
                   <div className="form-group">
-                    <label>Type Observation</label>
+                    <label>Type d'Observation</label>
                     <select
                       value={newType_obs}
                       onChange={(e) => setNewType_obs(e.target.value)}
@@ -211,7 +212,11 @@ function EditProduction() {
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Submit
+                  Mettre à jour
+                  </button>
+                  {"  "}
+                  <button onClick={() => navigate(-1)} className="btn btn-danger">
+                  Annuler
                   </button>
                 </div>
               </form>

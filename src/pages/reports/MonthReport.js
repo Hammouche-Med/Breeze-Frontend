@@ -36,7 +36,7 @@ function MonthReport() {
     { label: "Station", key: "stat_info.stat_name" },
     { label: "OACI", key: "stat_info.stat_oaci" },
     { label: "OMM", key: "stat_info.stat_omm" },
-    { label: "Prévue", key: "stat_info.taux.expected_d" },
+    { label: "Prévue", key: "stat_info.expected_m" },
     { label: "Reçue", key: "rec_num" },
     { label: "Prod", key: "month_prod" },
     { label: "H+3", key: "s_prodh1" },
@@ -49,7 +49,7 @@ function MonthReport() {
     { label: "Station", key: "stat_info.stat_name" },
     { label: "OACI", key: "stat_info.stat_oaci" },
     { label: "OMM", key: "stat_info.stat_omm" },
-    { label: "Prévue", key: "stat_info.taux.expected_d" },
+    { label: "Prévue", key: "stat_info.expected_m" },
     { label: "Reçue", key: "rec_num" },
     { label: "Prod", key: "month_prod" },
     { label: "H+5", key: "s_prodh1" },
@@ -77,7 +77,7 @@ function MonthReport() {
                         className="btn btn-gray btn-circle btn-lg float-right"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title="EXPORT METAR REPPORT TO CSV "
+                        title="EXPORTER LE RAPPORT METAR VERS CSV "
                         data={reports}
                       >
                         <i className="fa fa-print"></i>{" "}
@@ -88,7 +88,7 @@ function MonthReport() {
                         className="btn btn-gray btn-circle btn-lg float-right"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title="EXPORT SYNOP REPPORT TO CSV "
+                        title="EXPORTER LE RAPPORT SYNOPTIQUE VERS CSV"
                         data={reports}
                       >
                         <i className="fa fa-print"></i>{" "}
@@ -157,7 +157,6 @@ function MonthReport() {
                             <th>Rtd{">"}6H </th>
                           )}
 
-                          <th>Action</th>
                         </tr>
                       </thead>{" "}
                       {reports.length > 0 ? (
@@ -181,19 +180,6 @@ function MonthReport() {
                                 <td>{rpt.s_rtdH2}%</td>
                                 <td>{rpt.s_rtdH3}%</td>
 
-                                <td style={{ textAlign: "right" }}>
-                                  <a
-                                    className="btn btn-info btn-circle"
-                                    href="#"
-                                    data-placement="top"
-                                    title="Info"
-                                    data-toggle="modal"
-                                    data-target="#exampleModalCenter"
-                                  >
-                                    <i className="fas fa-info-circle"></i>
-                                  </a>
-                                  &nbsp;&nbsp;
-                                </td>
                               </tr>
                             );
                           })}

@@ -56,7 +56,7 @@ function AddProduction() {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Taux-Prod Created Successfully",
+              title: "Taux-Prod créé avec succès",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -64,8 +64,7 @@ function AddProduction() {
           }
         });
     } catch (error) {
-      setErrorMsg("error ocurred");
-      console.log(error)
+      setErrorMsg(error);
     }
   };
   return (
@@ -78,7 +77,7 @@ function AddProduction() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Add Taux de Production </h3>
+                <h3 className="card-title">Ajouter taux de production </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -90,7 +89,7 @@ function AddProduction() {
               <form onSubmit={createTaux_Prod}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">Name</label>
+                    <label htmlFor="exampleInputText1">Nom</label>
                     <input
                       type="text"
                       className="form-control"
@@ -110,7 +109,7 @@ function AddProduction() {
                       onChange={(e) => setFull_day(!full_day)}
                     />
                     <label className="form-check-label" htmlFor="exampleCheck2">
-                      Full-day
+                    Journée complète
                     </label>
                   </div>
                   <br></br>
@@ -141,7 +140,7 @@ function AddProduction() {
                  
 
                   <div className="form-group">
-                    <label>Type Observation</label>
+                    <label>Type d'Observation</label>
                     <select
                       value={type_obs}
                       onChange={(e) => setType_Obs(e.target.value)}
@@ -201,7 +200,11 @@ function AddProduction() {
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Submit
+                  Ajouter
+                  </button>
+                  {"  "}
+                  <button onClick={() => navigate(-1)} className="btn btn-danger">
+                  Annuler
                   </button>
                 </div>
               </form>

@@ -47,18 +47,18 @@ function Users() {
   };
   const handeDelete = async (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Êtes-vous sûr?",
+      text: "Vous ne pourrez pas revenir en arrière!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Oui, supprimez-le!",
     })
       .then((result) => {
         if (result.isConfirmed) {
           deletuser(id);
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          Swal.fire("Supprimé!", "Les données ont été supprimées.", "success");
         }
       })
       .then(() => {
@@ -87,19 +87,19 @@ function Users() {
                     >
                       <i className="fa fa-plus"></i>{" "}
                     </Link>
-                    <h3 className="card-title">List of all current users : </h3>
+                    <h3 className="card-title">Liste de tous les utilisateurs actuels : </h3>
                   </div>
                   <div className="card-body table-responsive p-0">
                     <table className="table table-hover text-nowrap">
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>User Name</th>
+                          <th>Prénom</th>
+                          <th>Nom</th>
+                          <th>Nom d'utilisateur</th>
                           <th>Email</th>
-                          <th>Phone</th>
-                          <th>User Type</th>
+                          <th>Téléphone</th>
+                          <th>Type d'utilisateur</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -117,7 +117,7 @@ function Users() {
                                 {user.is_superuser ? (
                                   <td>Admin</td>
                                 ) : (
-                                  <td>Staff</td>
+                                  <td>Employé</td>
                                 )}
                                 <td>
                                   <a
@@ -138,7 +138,7 @@ function Users() {
                                     to="/users/edit"
                                     data-toggle="tooltip"
                                     data-placement="top"
-                                    title="Edit"
+                                    title="Éditer"
                                     state={{
                                       id: user.id,
                                       first_name: user.first_name,
@@ -158,7 +158,7 @@ function Users() {
                                     to="/users/reset-password"
                                     data-toggle="tooltip"
                                     data-placement="top"
-                                    title="Reset Password"
+                                    title="Réinitialiser le mot de passe"
                                     state={{
                                       id: user.id,
                                     }}
@@ -173,7 +173,7 @@ function Users() {
                                     onClick={() => handeDelete(user.id)}
                                     data-toggle="tooltip"
                                     data-placement="top"
-                                    title="Delete"
+                                    title="Supprimer"
                                   >
                                     {" "}
                                     <i className="fas fa-trash"></i>

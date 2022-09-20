@@ -42,18 +42,18 @@ function Regions() {
   };
   const handeDelete = async (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Êtes-vous sûr?",
+      text: "Vous ne pourrez pas revenir en arrière!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Oui, supprimez-le!",
     })
       .then((result) => {
         if (result.isConfirmed) {
           deleteRegion(id);
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          Swal.fire("Supprimé!", "Les données ont été supprimées.", "success");
         }
       })
       .then(() => {
@@ -81,7 +81,7 @@ function Regions() {
                           className="btn btn-primary btn-circle btn-lg float-right"
                           data-toggle="tooltip"
                           data-placement="top"
-                          title="Add"
+                          title="Ajoute"
                         >
                           <i className="fa fa-plus"></i>{" "}
                         </Link>
@@ -99,7 +99,7 @@ function Regions() {
                     </CSVLink>
 
                     <h3 className="card-title">
-                      List of all current Regions :{" "}
+                    Liste de toutes les Régions actuelles : {" "}
                     </h3>
                   </div>
                   <div className="card-body table-responsive p-0">
@@ -107,7 +107,7 @@ function Regions() {
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Name</th>
+                          <th>Nom</th>
                           <th>Code</th>
                           <th className="px-2" style={{ textAlign: "right" }}>
                             Action
@@ -142,7 +142,7 @@ function Regions() {
                                         to="/regions/edit"
                                         data-toggle="tooltip"
                                         data-placement="top"
-                                        title="Edit"
+                                        title="Éditer"
                                         state={{
                                           id: reg.id,
                                           name: reg.name,
@@ -158,7 +158,7 @@ function Regions() {
                                         href="#"
                                         data-toggle="tooltip"
                                         data-placement="top"
-                                        title="Delete"
+                                        title="Supprimer"
                                         onClick={() => handeDelete(reg.id)}
                                       >
                                         {" "}

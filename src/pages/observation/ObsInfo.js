@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import formatDate from "../../tools/Formatter";
 
@@ -9,6 +10,8 @@ function ObsInfo(props) {
     station_omm,
     obs_date,
     rec_date,
+    obs_time,
+    rec_time,
     type,
     content
   } = props;
@@ -29,7 +32,7 @@ function ObsInfo(props) {
             <div className="card-body box-profile">
               <div className="text-center">
                 
-              <h3 className="profile-username text-center">Observation Details: </h3>
+              <h3 className="profile-username text-center">Observation Détails: </h3>
               </div>
               <ul className="list-group list-group-unbordered mb-3">
                 <li className="list-group-item">
@@ -42,10 +45,10 @@ function ObsInfo(props) {
                   <b>OMM</b> <a className="float-right"> {station_omm} </a>
                 </li>
                 <li className="list-group-item">
-                  <b>Date Obs</b> <a className="float-right"> {formatDate(obs_date)} </a>
+                  <b>Date Obs</b> <a className="float-right"> {formatDate(obs_date)} { moment(obs_time, "HH:mm:ss").format('HH:mm A') } </a>
                 </li>
                 <li className="list-group-item">
-                  <b>Date Reçue</b> <a className="float-right"> {formatDate(rec_date)} </a>
+                  <b>Date Reçue</b> <a className="float-right"> {formatDate(rec_date)} {moment(rec_time, "HH:mm:ss").format('HH:mm A') } </a>
                 </li>
                 <li className="list-group-item">
                   <b>Type Obs</b> <a className="float-right"> {type} </a>
@@ -64,6 +67,6 @@ function ObsInfo(props) {
     </div>
   </div>
   )
-}
-
+  }
+  
 export default ObsInfo;

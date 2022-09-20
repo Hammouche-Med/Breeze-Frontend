@@ -42,7 +42,7 @@ function Observation() {
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">
-                      List of all recent Observations :{" "}
+                    Liste de toutes les Observations récentes :{" "}
                     </h3>
                   </div>
                   <div className="card-body table-responsive p-0">

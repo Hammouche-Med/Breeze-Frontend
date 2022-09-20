@@ -41,18 +41,18 @@ function Stations() {
   };
   const handeDelete = async (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Êtes-vous sûr?",
+      text: "Vous ne pourrez pas revenir en arrière!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Oui, supprimez-le!",
     })
       .then((result) => {
         if (result.isConfirmed) {
           deleteStations(id);
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          Swal.fire("Supprimé!", "Les données ont été supprimées.", "success");
         }
       })
       .then(() => {
@@ -108,7 +108,7 @@ function Stations() {
                       <i className="fa fa-print"></i>{" "}
                     </CSVLink>
                     <h3 className="card-title">
-                      List of all current Stations :{" "}
+                    Liste de toutes les Stations actuelles :{" "}
                     </h3>
                   </div>
                   <div className="card-body table-responsive p-0">
@@ -119,11 +119,11 @@ function Stations() {
                           <th>OACI</th>
                           <th>OMM</th>
                           <th>Region</th>
-                          <th>Name</th>
-                          <th>Category</th>
-                          <th>longitude</th>
-                          <th>latitude</th>
-                          <th>altitude</th>
+                          <th>Nom</th>
+                          <th>Catégorie</th>
+                          <th>Longitude</th>
+                          <th>Latitude</th>
+                          <th>Altitude</th>
                           <th>Action</th>
                         </tr>
                       </thead>{" "}
@@ -158,6 +158,7 @@ function Stations() {
                                         to="/stations/edit"
                                         data-toggle="tooltip"
                                         data-placement="top"
+                                        title="Éditer"
                                         state={{
                                           id: stat.id,
                                           name: stat.name,
@@ -180,7 +181,7 @@ function Stations() {
                                         href="#"
                                         data-toggle="tooltip"
                                         data-placement="top"
-                                        title="Delete"
+                                        title="Supprimer"
                                         onClick={() => handeDelete(stat.id)}
                                       >
                                         {" "}

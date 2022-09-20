@@ -48,7 +48,7 @@ function ResetPassword() {
                       Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Password Updated Successfully",
+                        title: "Mot de passe mis à jour avec succès",
                         showConfirmButton: false,
                         timer: 1500,
                       });
@@ -72,7 +72,7 @@ function ResetPassword() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title"> Reset Password: </h3>
+                <h3 className="card-title"> Rréinitialiser le mot de passe: </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -84,7 +84,7 @@ function ResetPassword() {
               <form onSubmit={updatePassword}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">New Password</label>
+                    <label htmlFor="exampleInputText1">Nouveau mot de passe</label>
                     <input
                       type="password"
                       className="form-control"
@@ -95,7 +95,7 @@ function ResetPassword() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Repeat Password</label>
+                    <label htmlFor="exampleInputText2">Répéter le mot de passe</label>
                     <input
                       type="password"
                       className="form-control"
@@ -109,8 +109,14 @@ function ResetPassword() {
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
+                <button type="submit" className="btn btn-primary">
+                    Mettre à jour
+                  </button>{" "}
+                  <button
+                    onClick={() => navigate(-1)}
+                    className="btn btn-danger"
+                  >
+                    Annuler
                   </button>
                 </div>
               </form>

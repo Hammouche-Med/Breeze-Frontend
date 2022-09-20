@@ -12,8 +12,8 @@ function SideBar() {
         className="sidebar-brand d-flex align-items-center justify-content-center"
         href="#"
       >
-        <div className="sidebar-brand-icon rotate-n-15">
-          <i className="fas fa-laugh-wink" />
+        <div className="sidebar-brand-icon">
+          <i className="fas fa-chart-line" />
         </div>
         <div className="sidebar-brand-text mx-3">
           BREEZE <sup>2</sup>

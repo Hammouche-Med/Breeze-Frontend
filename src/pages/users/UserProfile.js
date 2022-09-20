@@ -61,7 +61,7 @@ function UserProfile() {
                           to="/users/edit"
                           data-toggle="tooltip"
                           data-placement="top"
-                          title="Edit"
+                          title="Éditer"
                           state={{
                             id: profile.id,
                             first_name: profile.first_name,
@@ -81,7 +81,7 @@ function UserProfile() {
                           to="/users/reset-password"
                           data-toggle="tooltip"
                           data-placement="top"
-                          title="Reset Password"
+                          title="Réinitialiser le mot de passe"
                           state={{
                             id: profile.id,
                           }}
@@ -100,7 +100,7 @@ function UserProfile() {
                   <div className="card-body">
                     <div className="row">
                       <div className="col-sm-3">
-                        <p className="mb-0">Full Name</p>
+                        <p className="mb-0">Nom et prénom</p>
                       </div>
                       <div className="col-sm-9">
                         <p className="text-muted mb-0">
@@ -120,7 +120,7 @@ function UserProfile() {
                     <hr />
                     <div className="row">
                       <div className="col-sm-3">
-                        <p className="mb-0">Phone</p>
+                        <p className="mb-0">Téléphone</p>
                       </div>
                       <div className="col-sm-9">
                         <p className="text-muted mb-0">{profile.phone}</p>

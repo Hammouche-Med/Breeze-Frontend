@@ -11,6 +11,7 @@ function AddUser() {
   const [last_name, setLast_name] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [r_password, setR_Password] = useState("");
   const [is_superuser, setIs_superuser] = useState(false);
@@ -26,6 +27,7 @@ function AddUser() {
     last_name,
     username,
     email,
+    phone,
     r_password,
     password,
     is_superuser,
@@ -39,13 +41,14 @@ function AddUser() {
         last_name: last_name,
         username: username,
         email: email,
+        phone: phone,
         password: password,
         password2: r_password,
         is_superuser: is_superuser,
         is_staff : true 
       };
       if (password !== r_password) {
-        setErrorMsg("Passwords doesn't match");
+        setErrorMsg("Les mots de passe ne correspondent pas");
       } else {
         const url = "http://127.0.0.1:8000/api/v1/users/create";
         const token = localStorage.getItem("token");
@@ -58,7 +61,7 @@ function AddUser() {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "User Created Successfully",
+            title: "Utilisateur créé avec succès",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -67,7 +70,7 @@ function AddUser() {
         
       }
     } catch (error) {
-        setErrorMsg("error ocurred")
+        setErrorMsg(error)
     }
   };
 
@@ -81,7 +84,7 @@ function AddUser() {
           <div className="container-fluid">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">Add User </h3>
+                <h3 className="card-title">Ajouter un utilisateur : </h3>
               </div>
               {errorMsg && (
                 <div className="alert alert-danger" role="alert">
@@ -93,12 +96,11 @@ function AddUser() {
               <form  onSubmit={createUser}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputText1">First Name</label>
+                    <label htmlFor="exampleInputText1">Prénom</label>
                     <input
                       type="text"
                       className="form-control"
                       id="exampleInputText1"
-                      placeholder="First Name"
                       name="first_name"
                       value={first_name}
                       onChange={(e) => setFirst_name(e.target.value)}
@@ -106,12 +108,11 @@ function AddUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText2">Last Name</label>
+                    <label htmlFor="exampleInputText2">Nom</label>
                     <input
                       type="text"
                       className="form-control"
                       id="exampleInputText2"
-                      placeholder="Last Name"
                       name="last_name"
                       value={last_name}
                       onChange={(e) => setLast_name(e.target.value)}
@@ -119,12 +120,11 @@ function AddUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputText3">UserName</label>
+                    <label htmlFor="exampleInputText3">Nom d'utilisateur</label>
                     <input
                       type="text"
                       className="form-control"
                       id="exampleInputText3"
-                      placeholder="UserName"
                       name="username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
@@ -132,12 +132,11 @@ function AddUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1">Email</label>
                     <input
                       type="email"
                       className="form-control"
                       id="exampleInputEmail1"
-                      placeholder="Enter email"
                       name="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -145,12 +144,23 @@ function AddUser() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label htmlFor="exampleInputphone">Téléphone</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="exampleInputphone"
+                      name="phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Mot de passe</label>
                     <input
                       type="password"
                       className="form-control"
                       id="exampleInputPassword1"
-                      placeholder="Password"
                       name="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -159,13 +169,12 @@ function AddUser() {
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputPassword2">
-                      Repeat Password
+                    Répéter le mot de passe
                     </label>
                     <input
                       type="password"
                       className="form-control"
                       id="exampleInputPassword2"
-                      placeholder="Repeat Password"
                       name="r_password"
                       value={r_password}
                       onChange={(e) => setR_Password(e.target.value)}
@@ -187,8 +196,11 @@ function AddUser() {
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
+                <button type="submit" className="btn btn-primary">
+                    Ajouter
+                  </button>{" "}
+                  <button onClick={() => navigate(-1)} className="btn btn-danger">
+                  Annuler
                   </button>
                 </div>
               </form>

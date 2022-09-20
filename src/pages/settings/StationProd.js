@@ -41,7 +41,7 @@ function StationProd() {
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">
-                      List of all registered Stations-Production :{" "}
+                    Liste de tous les Stations-Production :{" "}
                     </h3>
                   </div>
                   <div className="card-body table-responsive p-0">
@@ -52,7 +52,7 @@ function StationProd() {
                           <th>Station</th>
                           <th>OACI</th>
                           <th>OMM</th>
-                          <th>Category</th>
+                          <th>Catégorie</th>
                           <th>SYNOP-taux</th>
                           <th>METAR-taux</th>
                           <th style={{ textAlign: "right" }}>Action</th>
@@ -78,6 +78,7 @@ function StationProd() {
                                       to="/stat-prod/edit"
                                       data-toggle="tooltip"
                                       data-placement="top"
+                                      title="Éditer"
                                       state={{
                                         id: stat.id,
                                         name: stat.name,
