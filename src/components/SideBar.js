@@ -16,7 +16,7 @@ function SideBar() {
           <i className="fas fa-chart-line" />
         </div>
         <div className="sidebar-brand-text mx-3">
-          BREEZE <sup>2</sup>
+        AMET STAT <sup>2</sup>
         </div>
       </a>
       {/* Divider */}

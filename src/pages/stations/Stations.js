@@ -199,7 +199,15 @@ function Stations() {
                           <tr>
                             <td></td>
                             <td></td>
+                            <td></td>
+
+                            <td></td>
+                            <td></td>
                             <td>Loading...</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                           </tr>
                         </tbody>
